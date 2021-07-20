@@ -1,5 +1,6 @@
 import pool from "../../pool";
 import ICreateCargoDTO from "../DTOs/ICreateCargoDTO";
+import { Request, Response } from "express";
 
 export default class CargoController {
   public CreateCargo(data: ICreateCargoDTO) {

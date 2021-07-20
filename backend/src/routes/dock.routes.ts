@@ -4,6 +4,6 @@ import DockController from "../controllers/docks/Dock";
 const dockController = new DockController();
 const dockRouter = Router();
 
-dockRouter.post('/', dockController.CreateDock);
+dockRouter.post('/', dockController.create);
 
 export default dockRouter;

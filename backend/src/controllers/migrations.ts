@@ -2,7 +2,7 @@ import pool from "../pool";
 
 export default function runMigrations() {
     pool.query(
-        "CREATE TABLE IF NOT EXISTS dock (id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL, name VARCHAR(100) NOT NULL, max_ships INTEGER UNSIGNED NOT NULL, max_ship_size FLOAT NOT NULL, PRIMARY KEY (id));"  
+        "CREATE TABLE IF NOT EXISTS dock (id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL, name VARCHAR(100) NOT NULL UNIQUE, max_ships INTEGER UNSIGNED NOT NULL, max_ship_size FLOAT NOT NULL, PRIMARY KEY (id));"  
     );
     
     pool.query(

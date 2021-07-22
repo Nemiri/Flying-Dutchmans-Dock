@@ -1,12 +1,16 @@
 import pool from "../pool";
 import { Request, Response } from "express";
+import { v4 as uuidv4 } from 'uuid';
 
 export default class DockController {
   public async create(request: Request, response: Response) {
+    const id = uuidv4();
+
     pool.query(
       `
-      INSERT INTO dock (name, max_ships, max_ship_size) 
-      VALUES ("${request.body.name}", ${request.body.max_ships}, ${request.body.max_ship_size});`,
+        INSERT INTO dock (id, name, max_ships, max_ship_size) 
+        VALUES ("${id}", "${request.body.name}", ${request.body.max_ships}, ${request.body.max_ship_size});
+      `,
       async (e, result) => {
         if (e)
           return response.status(400).json({

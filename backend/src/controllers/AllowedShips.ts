@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import pool from "../pool";
+import { v4 as uuidv4 } from 'uuid';
 
 export default class AllowedShipsController {
   public async create(request: Request, response: Response) {
+    const id = uuidv4();
+
     pool.query(
       `
-        INSERT INTO allowed_ships (dock_id, certification) 
-        VALUES (${request.body.dock_id}, ${request.body.certification});
+        INSERT INTO allowed_ships (id, dock_id, ship_id, certification) 
+        VALUES ("${id}", "${request.body.dock_id}", "${request.body.ship_id}", ${request.body.certification});
       `,
       (e, result) => {
         if (e)

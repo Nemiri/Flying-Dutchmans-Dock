@@ -1,4 +1,4 @@
-import pool from "../../pool";
+import pool from "../pool";
 import ICreateCargoDTO from "../DTOs/ICreateCargoDTO";
 import { Request, Response } from "express";
 

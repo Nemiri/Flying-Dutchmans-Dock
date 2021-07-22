@@ -6,7 +6,7 @@ export default function runMigrations() {
     );
     
     pool.query(
-        "CREATE TABLE IF NOT EXISTS ship (id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL, name VARCHAR(100) NOT NULL UNIQUE, max_speed FLOAT NOT NULL, ship_captain VARCHAR(100) NOT NULL, size FLOAT NOT NULL, type VARCHAR(100) NOT NULL, max_tripulation INTEGER NOT NULL, max_cargo FLOAT NOT NULL, dock_id INTEGER UNSIGNED, allowed_ships_id INTEGER UNSIGNED, FOREIGN KEY (dock_id) REFERENCES dock(id), FOREIGN KEY (allowed_ships_id) REFERENCES allowed_ships(id), PRIMARY KEY (id));"
+        "CREATE TABLE IF NOT EXISTS ship (id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL, name VARCHAR(100) NOT NULL UNIQUE, max_speed FLOAT NOT NULL, ship_captain VARCHAR(100) NOT NULL, size FLOAT NOT NULL, type VARCHAR(100) NOT NULL, max_tripulation INTEGER NOT NULL, max_cargo FLOAT NOT NULL, dock_id INTEGER UNSIGNED, FOREIGN KEY (dock_id) REFERENCES dock(id), PRIMARY KEY (id));"
     );
 
     pool.query(
@@ -22,7 +22,7 @@ export default function runMigrations() {
     );
 
     pool.query(
-        "CREATE TABLE IF NOT EXISTS allowed_ships (id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL, dock_id INTEGER UNSIGNED NOT NULL, certification DATETIME NOT NULL, FOREIGN KEY (dock_id) REFERENCES dock(id), PRIMARY KEY (id));"
+        "CREATE TABLE IF NOT EXISTS allowed_ships (id INTEGER UNSIGNED AUTO_INCREMENT NOT NULL, dock_id INTEGER UNSIGNED UNIQUE NOT NULL, ship_id INTEGER UNSIGNED UNIQUE NOT NULL, certification DATETIME NOT NULL, FOREIGN KEY (dock_id) REFERENCES dock(id), FOREIGN KEY (ship_id) REFERENCES ship(id), PRIMARY KEY (id));"
     );
 
     console.log("Migrations completed!");

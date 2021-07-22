@@ -1,9 +1,9 @@
 import { Router } from "express";
-import ShipController from "../controllers/ships/Ship";
+import ShipController from "../controllers/Ship";
 
 const shipController = new ShipController();
 const shipRouter = Router();
 
-shipRouter.post('/', shipController.CreateShip);
+shipRouter.post('/', shipController.create);
 
 export default shipRouter;

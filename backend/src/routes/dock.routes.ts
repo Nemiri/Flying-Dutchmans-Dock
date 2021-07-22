@@ -1,5 +1,5 @@
 import { Router } from "express";
-import DockController from "../controllers/docks/Dock";
+import DockController from "../controllers/Dock";
 
 const dockController = new DockController();
 const dockRouter = Router();

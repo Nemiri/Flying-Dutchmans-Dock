@@ -1,6 +1,6 @@
 import pool from "../pool";
 import { Request, Response } from "express";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export default class DockController {
   public async create(request: Request, response: Response) {
@@ -9,8 +9,7 @@ export default class DockController {
     pool.query(
       `
         INSERT INTO dock (id, name, max_ships, max_ship_size) 
-        VALUES ("${id}", "${request.body.name}", ${request.body.max_ships}, ${request.body.max_ship_size});
-      `,
+        VALUES ("${id}", "${request.body.name}", ${request.body.max_ships}, ${request.body.max_ship_size});`,
       async (e, result) => {
         if (e)
           return response.status(400).json({
@@ -28,7 +27,7 @@ export default class DockController {
     pool.query(`SELECT * FROM dock;`, async (e, result) => {
       if (e)
         return response.status(400).json({
-          message: "Something got wrong :(",
+          message: e.message,
         });
 
       return response.json(result);
@@ -38,12 +37,12 @@ export default class DockController {
   }
 
   public async findOne(request: Request, response: Response) {
-    const id = request.params.id;
+    const { id } = request.params;
 
     pool.query(`SELECT * FROM dock WHERE id = ${id};`, async (e, result) => {
       if (e)
         return response.status(400).json({
-          message: "Something got wrong :(",
+          message: e.message,
         });
 
       return response.json(result);

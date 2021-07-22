@@ -1,6 +1,6 @@
 import pool from "../pool";
 import { Request, Response } from "express";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export default class ShipController {
   public async create(request: Request, response: Response) {
@@ -17,8 +17,7 @@ export default class ShipController {
         "${request.body.type}", 
         ${request.body.max_tripulation}, 
         ${request.body.max_cargo}, 
-        "${request.body.dock_id}");
-      `,
+        "${request.body.dock_id}");`,
       (e, result) => {
         if (e)
           return response.status(400).json({
@@ -28,5 +27,34 @@ export default class ShipController {
         return response.status(200).json(result);
       }
     );
+  }
+
+  public async findInDock(request: Request, response: Response) {
+    const { ship_id } = request.params;
+
+    pool.query(
+      `SELECT * FROM ship WHERE dock_id = "${ship_id}";`,
+      (e, result) => {
+        if (e)
+          return response.status(400).json({
+            message: e.message,
+          });
+
+        return response.status(200).json(result);
+      }
+    );
+  }
+
+  public async findOne(request: Request, response: Response) {
+    const { id } = request.params;
+
+    pool.query(`SELECT * FROM ship WHERE id = "${id}";`, (e, result) => {
+      if (e)
+        return response.status(400).json({
+          message: e.message,
+        });
+
+      return response.status(200).json(result);
+    });
   }
 }

@@ -14,7 +14,7 @@ export default function runMigrations() {
     );
     
     pool.query(
-        "CREATE TABLE IF NOT EXISTS announcements (id VARCHAR(100) NOT NULL, dock_id VARCHAR(100) NOT NULL, ship_id VARCHAR(100) NOT NULL, arrival_time DATETIME NOT NULL, departure_time DATETIME NOT NULL, FOREIGN KEY (dock_id) REFERENCES dock(id), FOREIGN KEY (ship_id) REFERENCES ship(id), PRIMARY KEY (id));"  
+        "CREATE TABLE IF NOT EXISTS announcement (id VARCHAR(100) NOT NULL, dock_id VARCHAR(100) NOT NULL, ship_id VARCHAR(100) NOT NULL, arrival_time DATETIME NOT NULL, departure_time DATETIME NOT NULL, FOREIGN KEY (dock_id) REFERENCES dock(id), FOREIGN KEY (ship_id) REFERENCES ship(id), PRIMARY KEY (id));"  
     );
 
     pool.query(

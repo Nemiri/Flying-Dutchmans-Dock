@@ -105,3 +105,8 @@ dist
 
 # VSCode
 .vscode
+/.idea/.gitignore
+/.idea/discord.xml
+/.idea/Flying-Dutchmans-Dock.iml
+/.idea/modules.xml
+/.idea/vcs.xml

@@ -6,8 +6,7 @@ export default class ShipController {
     public async create(request: Request, response: Response) {
         const id = uuidv4();
 
-        pool.query(
-            `
+        pool.query(`
         INSERT INTO ship (id, name, max_speed, ship_captain, size, type, max_tripulation, max_cargo, dock_id) 
         VALUES ("${id}", 
         "${request.body.name}", 

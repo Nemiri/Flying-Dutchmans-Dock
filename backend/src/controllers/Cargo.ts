@@ -6,8 +6,7 @@ export default class CargoController {
   public async create(request: Request, response: Response) {
     const id = uuidv4();
 
-    pool.query(
-      `
+    pool.query(`
       INSERT INTO cargo (type, weight, risk_class)
        VALUES ("${id}", 
        ${request.body.type}, 

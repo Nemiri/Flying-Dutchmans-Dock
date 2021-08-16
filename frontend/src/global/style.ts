@@ -6,6 +6,11 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  
+  #root {
+    display: flex;
+    flex-direction: row;
+  }
 
   :root {
     --green: #00FF00;
@@ -15,12 +20,12 @@ export default createGlobalStyle`
     --b-text: #252733;
     --pb-background: #363740;
     --pbh-background: #9FA2B4;
-    --pw-background: #DDE2FF;
-    --sw-background: #DFE0EB;
+    --pw-background: #e0e3ff;
+    --sw-background: #e9eeff;
   }
 
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 0;
   }
 
   ::-webkit-scrollbar-track {

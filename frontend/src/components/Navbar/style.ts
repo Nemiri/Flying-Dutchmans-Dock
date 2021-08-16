@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: var(--pb-background);
   height: 100vh;
-  width: 15vw;
+  width: 320px;
 `
 
 export const LogoAndTitle = styled.div`

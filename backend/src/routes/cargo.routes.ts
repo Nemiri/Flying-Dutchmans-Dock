@@ -6,5 +6,4 @@ const cargoRouter = Router();
 
 cargoRouter.post("/", cargoController.create);
 
-
 export default cargoRouter;

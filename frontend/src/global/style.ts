@@ -20,7 +20,7 @@ export default createGlobalStyle`
     --b-text: #252733;
     --pb-background: #363740;
     --pbh-background: #9FA2B4;
-    --pw-background: #e0e3ff;
+    --pw-background: #F7F8FC;
     --sw-background: #e9eeff;
   }
 

@@ -1,23 +1,37 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import { Container, Table, TableContainer } from './styles'
+import { parseISO, format } from 'date-fns';
 
 import api from '../../api/api'
+import {useHistory} from "react-router-dom";
 
 interface Ship {
+    id: string;
     name: string;
     ship_captain: string;
     dock_name: string
     arrival_time: string;
 }
 
-const Docks = () => {
+const Docks: React.FC = () => {
+    const history = useHistory()
+
     const [ships, setShips] = useState<Ship[]>([])
 
     useEffect(() => {
         api.get<Ship[]>('ship').then((response) => {
-            setShips(response.data)
+            setShips(response.data.map((ship) => {
+                return {
+                    ...ship,
+                    arrival_time: format(parseISO(ship.arrival_time), 'dd/MM/yyyy')
+                }
+            }))
         })
     }, [])
+
+    const seeShip = useCallback((id) => {
+        history.push(`ship/${id}`)
+    }, [history])
 
     return (
         <Container>
@@ -38,11 +52,11 @@ const Docks = () => {
                     <tbody>
                         {ships.map((ship, index) => {
                             return (
-                                <tr>
+                                <tr onClick={() => seeShip(ship.id)}>
                                     <td>{index}</td>
                                     <td>{ship.name}<br/>{ship.dock_name}</td>
                                     <td>{ship.ship_captain}</td>
-                                    <td>{ship.dock_name}</td>
+                                    <td>{ship.arrival_time}</td>
                                 </tr>
                             )
                         })}

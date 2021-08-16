@@ -3,33 +3,21 @@ import { Container, Table, TableContainer } from './styles'
 
 import api from '../../api/api'
 
-interface Dock {
-    name: string;
-    max_ships: number;
-    max_ship_size: number;
-}
-
 interface Ship {
     name: string;
     ship_captain: string;
+    dock_name: string
+    arrival_time: string;
 }
 
 const Docks = () => {
-    const [docks, setDocks] = useState({} as Dock[])
-    const [ships, setShips] = useState({} as Ship[])
+    const [ships, setShips] = useState<Ship[]>([])
 
     useEffect(() => {
-        api.get('dock').then((response) => {
-            setDocks(response.data)
-        })
-
-        api.get('ship').then((response) => {
+        api.get<Ship[]>('ship').then((response) => {
             setShips(response.data)
         })
     }, [])
-
-    console.dir(docks)
-    console.dir(ships)
 
     return (
         <Container>
@@ -48,96 +36,16 @@ const Docks = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bismarck</td>
-                            <td>Davi Banfi</td>
-                            <td>26/08/2021</td>
-                        </tr>
+                        {ships.map((ship, index) => {
+                            return (
+                                <tr>
+                                    <td>{index}</td>
+                                    <td>{ship.name}<br/>{ship.dock_name}</td>
+                                    <td>{ship.ship_captain}</td>
+                                    <td>{ship.dock_name}</td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </Table>
             </TableContainer>

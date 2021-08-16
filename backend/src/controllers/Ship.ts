@@ -57,6 +57,14 @@ export default class ShipController {
         });
     }
 
+    public async index(request: Request, response: Response) {
+        pool.query(`SELECT S.*, D.name as 'dock_name', A.arrival_time as 'arrival_time' FROM ship S, dock D, announcement A WHERE S.dock_id = D.id AND A.dock_id = D.id;`, (e, result) => {
+            if(e) return response.status(400).json({ message: e.message })
+
+            return response.status(200).json(result)
+        });
+    }
+
     public async delete(request: Request, response: Response) {
         const {id} = request.params;
 

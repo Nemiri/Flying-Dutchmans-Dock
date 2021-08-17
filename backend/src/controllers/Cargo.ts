@@ -27,13 +27,16 @@ export default class CargoController {
   }
 
   public async index(request: Request, response: Response) {
-      const { ship_id } = request.params
+    const { ship_id } = request.params;
 
-      pool.query(`SELECT type, weight, risk_class FROM cargo WHERE ship_id = "${ship_id}"`, (e, result) => {
-          if (e) return response.status(400).json({ message: e.message });
+    pool.query(
+      `SELECT type, weight, risk_class FROM cargo WHERE ship_id = "${ship_id}"`,
+      (e, result) => {
+        if (e) return response.status(400).json({ message: e.message });
 
-          return response.status(200).json(result)
-      })
+        return response.status(200).json(result);
+      }
+    );
   }
 
   public async delete(request: Request, response: Response) {

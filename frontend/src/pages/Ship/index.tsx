@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import { Container, InfoContainer, Certificate, ShipAndCargo } from './styles'
 import api from "../../api/api";
 import { useParams } from "react-router-dom";
 
 interface SingleShip {
+    id: string;
     name: string;
     type: string;
     size: number;
@@ -14,6 +15,7 @@ interface SingleShip {
     max_speed: number;
     highest_risk_class: number;
     dock_name: string;
+    dock_id: string;
     arrival_time: string;
 }
 
@@ -31,6 +33,13 @@ const Ship: React.FC = () => {
     const params = useParams<Request>()
     const [ship, setShip] = useState<SingleShip>({} as SingleShip)
     const [cargo, setCargo] = useState<Cargo[]>([])
+
+    const handleSubmit = useCallback(() => {
+        api.post('allowed_ships', {
+            dock_id: ship.dock_id,
+            ship_id: ship.id
+        })
+    }, [])
 
     useEffect( () => {
         api.get<SingleShip>(`ship/${params.id}`).then(response => {
@@ -110,8 +119,28 @@ const Ship: React.FC = () => {
                 </InfoContainer>
             </ShipAndCargo>
             <Certificate>
-                <h2>Certificar</h2><p>Para a embarcação ser certificada, confirme a checklist.</p>
-
+                <div id="header">
+                    <div>
+                        <h2>Certificar</h2><p>Para a embarcação ser certificada, confirme a checklist.</p>
+                    </div>
+                    <button type="submit" onClick={() => alert('aaa')}><p>Gerar Certificado</p></button>
+                </div>
+                <form id="checklist-container" onSubmit={handleSubmit}>
+                    <label className="checklist">
+                        <input type="checkbox" className="checkbox" />
+                        <p>Tem alguém armado?</p>
+                    </label>
+                    <hr/>
+                    <label className="checklist">
+                        <input type="checkbox" className="checkbox" />
+                        <p>Algum tripulante tem TikTok instalado?</p>
+                    </label>
+                    <hr/>
+                    <label className="checklist">
+                        <input type="checkbox" className="checkbox" />
+                        <p>Certeza que ninguém tá armado?</p>
+                    </label>
+                </form>
             </Certificate>
         </Container>
     )

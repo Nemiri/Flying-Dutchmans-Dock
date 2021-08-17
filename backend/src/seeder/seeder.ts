@@ -1,10 +1,7 @@
 import pool from "../pool";
 import { v4 as uuidv4 } from "uuid";
-import { response } from "express";
 
-//eu peço desculpas a todos que eu feri criando esse código
-
-export default function seeder(){
+export default function seeder() {
     //DOCKS
     const dockalfa = {
         id: uuidv4(),
@@ -270,54 +267,54 @@ export default function seeder(){
     VALUES
      ("${shipMalcolm.id}", "${shipMalcolm.name}", ${shipMalcolm.max_speed},
      "${shipMalcolm.ship_captain}", ${shipMalcolm.size}, 
-     "${shipMalcolm.type}", ${shipMalcolm.max_tripulation}, ${shipMalcolm.max_cargo}, ${shipMalcolm.dock_id}),
+     "${shipMalcolm.type}", ${shipMalcolm.max_tripulation}, ${shipMalcolm.max_cargo}, "${dockalfa.id}"),
      ("${shipBismark.id}", "${shipBismark.name}", ${shipBismark.max_speed},
      "${shipBismark.ship_captain}", ${shipBismark.size}, 
-     "${shipBismark.type}", ${shipBismark.max_tripulation}, ${shipBismark.max_cargo}, ${shipBismark.dock_id}),
+     "${shipBismark.type}", ${shipBismark.max_tripulation}, ${shipBismark.max_cargo}, "${dockalfa.id}"),
      ("${shipSalazar.id}", "${shipSalazar.name}", ${shipSalazar.max_speed},
      "${shipSalazar.ship_captain}", ${shipSalazar.size}, 
-     "${shipSalazar.type}", ${shipSalazar.max_tripulation}, ${shipSalazar.max_cargo}, ${shipSalazar.dock_id}), 
+     "${shipSalazar.type}", ${shipSalazar.max_tripulation}, ${shipSalazar.max_cargo}, "${dockbeta.id}"), 
      ("${shipTchaikovsky.id}", "${shipTchaikovsky.name}", ${shipTchaikovsky.max_speed},
      "${shipTchaikovsky.ship_captain}", ${shipTchaikovsky.size}, 
-     "${shipTchaikovsky.type}", ${shipTchaikovsky.max_tripulation}, ${shipTchaikovsky.max_cargo}, ${shipTchaikovsky.dock_id}),   
+     "${shipTchaikovsky.type}", ${shipTchaikovsky.max_tripulation}, ${shipTchaikovsky.max_cargo}, "${dockbeta.id}"),   
      ("${shipSantaMaria.id}", "${shipSantaMaria.name}", ${shipSantaMaria.max_speed},
      "${shipSantaMaria.ship_captain}", ${shipSantaMaria.size}, 
-     "${shipSantaMaria.type}", ${shipSantaMaria.max_tripulation}, ${shipSantaMaria.max_cargo}, ${shipSantaMaria.dock_id}),
+     "${shipSantaMaria.type}", ${shipSantaMaria.max_tripulation}, ${shipSantaMaria.max_cargo}, "${docksigma.id}"),
      ("${shipADP.id}", "${shipADP.name}", ${shipADP.max_speed},
      "${shipADP.ship_captain}", ${shipADP.size}, 
-     "${shipADP.type}", ${shipADP.max_tripulation}, ${shipADP.max_cargo}, ${shipADP.dock_id}); 
+     "${shipADP.type}", ${shipADP.max_tripulation}, ${shipADP.max_cargo}, "${docksigma.id}"); 
     `);
 
     pool.query(`
     INSERT INTO cargo
     (id, ship_id, type, weight, risk_class)
     VALUES
-    ("${cargoMalcolm.id}", "${cargoMalcolm.ship_id}", "${cargoMalcolm.type}", ${cargoMalcolm.weight}, ${cargoMalcolm.risk_class}),
-    ("${cargoBismark.id}", "${cargoBismark.ship_id}", "${cargoBismark.type}", ${cargoBismark.weight}, ${cargoBismark.risk_class}),
-    ("${cargoSalazar.id}", "${cargoSalazar.ship_id}", "${cargoSalazar.type}", ${cargoSalazar.weight}, ${cargoSalazar.risk_class}),
-    ("${cargoTchaikovsky.id}", "${cargoTchaikovsky.ship_id}", "${cargoTchaikovsky.type}", ${cargoTchaikovsky.weight}, ${cargoTchaikovsky.risk_class}),
-    ("${cargoSantaMaria.id}", "${cargoSantaMaria.ship_id}", "${cargoSantaMaria.type}", ${cargoSantaMaria.weight}, ${cargoSantaMaria.risk_class}),
-    ("${cargoADP.id}", "${cargoADP.ship_id}", "${cargoADP.type}", ${cargoADP.weight}, ${cargoADP.risk_class});
+    ("${cargoMalcolm.id}", "${shipMalcolm.id}", "${cargoMalcolm.type}", ${cargoMalcolm.weight}, ${cargoMalcolm.risk_class}),
+    ("${cargoBismark.id}", "${shipBismark.id}", "${cargoBismark.type}", ${cargoBismark.weight}, ${cargoBismark.risk_class}),
+    ("${cargoSalazar.id}", "${shipSalazar.id}", "${cargoSalazar.type}", ${cargoSalazar.weight}, ${cargoSalazar.risk_class}),
+    ("${cargoTchaikovsky.id}", "${shipTchaikovsky.id}", "${cargoTchaikovsky.type}", ${cargoTchaikovsky.weight}, ${cargoTchaikovsky.risk_class}),
+    ("${cargoSantaMaria.id}", "${shipSantaMaria.id}", "${cargoSantaMaria.type}", ${cargoSantaMaria.weight}, ${cargoSantaMaria.risk_class}),
+    ("${cargoADP.id}", "${shipADP.id}", "${cargoADP.type}", ${cargoADP.weight}, ${cargoADP.risk_class});
     `);
 
     pool.query(`
     INSERT INTO announcement
     (id, dock_id, ship_id, arrival_time)
     VALUES
-    ("${announcementMalcolm.id}", "${announcementMalcolm.dock_id}", "${announcementMalcolm.ship_id}", "${announcementMalcolm.arrival_time}"),
-    ("${announcementBismark.id}", "${announcementBismark.dock_id}", "${announcementBismark.ship_id}", "${announcementBismark.arrival_time}"),
-    ("${announcementSalazar.id}", "${announcementSalazar.dock_id}", "${announcementSalazar.ship_id}", "${announcementSalazar.arrival_time}"),
-    ("${announcementTchaikovsky.id}", "${announcementTchaikovsky.dock_id}", "${announcementTchaikovsky.ship_id}", "${announcementTchaikovsky.arrival_time}"),
-    ("${announcementSantaMaria.id}", "${announcementSantaMaria.dock_id}", "${announcementSantaMaria.ship_id}", "${announcementSantaMaria.arrival_time}"),
-    ("${announcementADP.id}", "${announcementADP.dock_id}", "${announcementADP.ship_id}", "${announcementADP.arrival_time}");
+    ("${announcementMalcolm.id}", "${shipMalcolm.dock_id}", "${shipMalcolm.id}", "${announcementMalcolm.arrival_time}"),
+    ("${announcementBismark.id}", "${shipBismark.dock_id}", "${shipBismark.id}", "${announcementBismark.arrival_time}"),
+    ("${announcementSalazar.id}", "${shipSalazar.dock_id}", "${shipSalazar.id}", "${announcementSalazar.arrival_time}"),
+    ("${announcementTchaikovsky.id}", "${shipTchaikovsky.dock_id}", "${shipTchaikovsky.id}", "${announcementTchaikovsky.arrival_time}"),
+    ("${announcementSantaMaria.id}", "${shipSantaMaria.dock_id}", "${shipSantaMaria.id}", "${announcementSantaMaria.arrival_time}"),
+    ("${announcementADP.id}", "${shipADP.dock_id}", "${shipADP.id}", "${announcementADP.arrival_time}");
     `);
 
     pool.query(`
     INSERT INTO allowed_ships
     (id, ship_id, dock_id, certification)
     VALUES
-    ("${allowedShipMalcolm.id}", "${allowedShipMalcolm.ship_id}", "${allowedShipMalcolm.dock_id}", "${allowedShipMalcolm.certification}"),
-    ("${allowedShipSalazar.id}", "${allowedShipSalazar.ship_id}", "${allowedShipSalazar.dock_id}", "${allowedShipSalazar.certification}");
+    ("${allowedShipMalcolm.id}", "${shipMalcolm.id}", "${allowedShipMalcolm.dock_id}", "${allowedShipMalcolm.certification}"),
+    ("${allowedShipSalazar.id}", "${shipSalazar.id}", "${allowedShipSalazar.dock_id}", "${allowedShipSalazar.certification}");
     `);
 
     pool.query(`

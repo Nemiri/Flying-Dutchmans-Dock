@@ -25,16 +25,17 @@ export default createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    width: 0;
+    width: 7px;
   }
 
   ::-webkit-scrollbar-track {
     border-radius: 4px;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: var(--grey-200);
+    background: #888;
   }
 
   @media (max-width: 1080px) {

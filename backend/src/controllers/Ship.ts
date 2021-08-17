@@ -1,6 +1,7 @@
 import pool from "../pool";
 import {Request, Response} from "express";
 import {v4 as uuidv4} from "uuid";
+import {RowDataPacket} from "mysql2";
 
 export default class ShipController {
     public async create(request: Request, response: Response) {
@@ -47,13 +48,15 @@ export default class ShipController {
     public async findOne(request: Request, response: Response) {
         const {id} = request.params;
 
-        pool.query(`SELECT * FROM ship WHERE id = "${id}";`, (e, result) => {
+        pool.query(`SELECT * FROM ship WHERE id = "${id}";`, (e, result: RowDataPacket) => {
             if (e)
                 return response.status(400).json({
                     message: e.message,
                 });
 
-            return response.status(200).json(result);
+            const ship = Object.assign({}, result[0])
+
+            return response.status(200).json(ship);
         });
     }
 

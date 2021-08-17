@@ -34,6 +34,8 @@ const Docks: React.FC = () => {
         history.push(`ship/${id}`)
     }, [history])
 
+    console.log(ships)
+
     return (
         <Container>
             <h1>Embarcações</h1>

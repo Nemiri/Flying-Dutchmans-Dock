@@ -1,10 +1,10 @@
 import React, {useCallback} from "react";
 import { Container, Navbar, LogoAndTitle } from "./style"
 
-import logo from '../../assets/logo.png'
 import { FaAnchor, FaShip, FaTicketAlt } from 'react-icons/fa'
 import { IoMegaphone } from 'react-icons/io5'
 import { useHistory } from "react-router-dom";
+import { GiCargoShip } from "react-icons/gi";
 
 const Menu: React.FC = () => {
     const history = useHistory()
@@ -28,7 +28,7 @@ const Menu: React.FC = () => {
     return (
         <Container>
             <LogoAndTitle>
-                <img src={logo} alt="logo"/>
+                <GiCargoShip/>
                 <h3>Flying Dutchman's Dock</h3>
             </LogoAndTitle>
             <Navbar>

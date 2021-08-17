@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: var(--pb-background);
   height: 100vh;
-  width: 320px;
+  width: 350px;
 `
 
 export const LogoAndTitle = styled.div`
   height: 18vh;
+  margin: 32px 0;
 
   display: flex;
   flex-direction: column;
@@ -20,10 +21,11 @@ export const LogoAndTitle = styled.div`
     color: var(--w-text);
   }
 
-  img {
+  svg {
+    color: #1C64F2;
     margin-top: 1em;
-    width: 48px;
-    height: 48px;
+    width: 72px;
+    height: 72px;
   }
 `
 
@@ -32,7 +34,7 @@ export const Navbar = styled.ul`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
+  
   list-style-type: none;
 
   li {

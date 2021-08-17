@@ -16,11 +16,6 @@ export const Container = styled.div`
   }
 `;
 
-export const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
 export const ShipAndCargo = styled.div`
   display: flex;
   flex-direction: row;
@@ -29,7 +24,12 @@ export const ShipAndCargo = styled.div`
   height: 55vh;
 `
 
-export const ShipInfo = styled.div`
+export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  padding: 32px;
   margin-right: 10px;
   
   height: 48vh;
@@ -38,20 +38,42 @@ export const ShipInfo = styled.div`
 
   border-radius: 8px;
   border: solid #dde0ec 1px;
-`
-
-export const CargoInfo = styled.div`
-  margin-left: 10px;
   
-  height: 48vh;
-  width: 50%;
-  background-color: white;
+  .header {
+    width: 35%;
+  }
+  
+  #general-info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    overflow: scroll;
+    max-height: 100%;
+    
+    .cell {
+      margin: 16px 0;
+      width: 100%;
+      text-align: center;
+      
+      h3 {
+        padding-bottom: 16px;
+      }
+    }
 
-  border-radius: 8px;
-  border: solid #dde0ec 1px;
+    hr {
+      width: 100%;
+      border: none;
+      height: 1px;
+      background-color: #DFE0EB;
+    }
+  }
 `
 
 export const Certificate = styled.div`
+  padding: 32px;
   margin-top: 20px;
   
   height: 100%;

@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-import { Container, ShipInfo, CargoInfo, Certificate, ShipAndCargo } from './styles'
+import { Container, InfoContainer, Certificate, ShipAndCargo } from './styles'
 import api from "../../api/api";
 import { useParams } from "react-router-dom";
 
 interface SingleShip {
     name: string;
+    type: string;
+    size: number;
     ship_captain: string;
-    dock_name: string
+    max_tripulation: number;
+    max_cargo: number;
+    max_speed: number;
+    highest_risk_class: number;
+    dock_name: string;
     arrival_time: string;
 }
 
@@ -40,15 +46,72 @@ const Ship: React.FC = () => {
         <Container>
             <h1>{ship.name}</h1>
             <ShipAndCargo>
-                <ShipInfo>
-                    <p>ShipInfo</p>
-                </ShipInfo>
-                <CargoInfo>
-                    <p>CargoInfo</p>
-                </CargoInfo>
+                <InfoContainer>
+                    <div className="header">
+                        <h2>Informações</h2><p>{ship.dock_name}</p>
+                    </div>
+                    <div id="general-info">
+                        <div className="cell">
+                            <p>Velocidade Máxima</p>
+                            <h3>{ship.max_speed} Km/h</h3>
+                            <hr/>
+                        </div>
+                        <div className="cell">
+                            <p>Número máximo de Tripulantes</p>
+                            <h3>{ship.max_tripulation}</h3>
+                            <hr/>
+                        </div>
+                        <div className="cell">
+                            <p>Tipo da Embarcação</p>
+                            <h3>{ship.type}</h3>
+                            <hr/>
+                        </div>
+                        <div className="cell">
+                            <p>Tamanho</p>
+                            <h3>{ship.size} m²</h3>
+                            <hr/>
+                        </div>
+                        <div className="cell">
+                            <p>Peso máximo de carga</p>
+                            <h3>{ship.max_cargo} Kg</h3>
+                            <hr/>
+                        </div>
+                        <div className="cell">
+                            <p>Certificado em</p>
+                            <h3>25/08/2021</h3>
+                        </div>
+                    </div>
+                </InfoContainer>
+                <InfoContainer>
+                    <div className="header">
+                        <h2>Informações da Carga</h2><p>Classe mais alta de risco: {ship.highest_risk_class}</p>
+                    </div>
+                    <div id="general-info">
+                        {cargo.map(single_cargo => {
+                            return(
+                                <>
+                                    <div className="cell">
+                                        <p>Tipo da Carga</p>
+                                        <h3>{single_cargo.type}</h3>
+                                    </div>
+                                    <div className="cell">
+                                        <p>Peso</p>
+                                        <h3>{single_cargo.weight} Kg</h3>
+                                    </div>
+                                    <div className="cell">
+                                        <p>Risco</p>
+                                        <h3>{single_cargo.risk_class}</h3>
+                                        <hr/>
+                                    </div>
+                                </>
+                            )
+                        })}
+                    </div>
+                </InfoContainer>
             </ShipAndCargo>
             <Certificate>
-                <p>Certificate</p>
+                <h2>Certificar</h2><p>Para a embarcação ser certificada, confirme a checklist.</p>
+
             </Certificate>
         </Container>
     )

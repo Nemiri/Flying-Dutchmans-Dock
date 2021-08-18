@@ -22,7 +22,7 @@ export const ShipAndCargo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-`
+`;
 
 export const InfoContainer = styled.div`
   display: flex;
@@ -66,10 +66,10 @@ export const InfoContainer = styled.div`
       width: 100%;
       border: none;
       height: 1px;
-      background-color: #DFE0EB;
+      background-color: #dfe0eb;
     }
   }
-`
+`;
 
 export const Certificate = styled.div`
   padding: 32px;
@@ -85,20 +85,20 @@ export const Certificate = styled.div`
     height: 75%;
     overflow: scroll;
   }
-  
+
   button {
     position: relative;
     height: 60%;
-    
+
     border: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 8px 16px;
-    background: #C5C7CD;
+    background: #c5c7cd;
     border-radius: 12px;
-    
+
     p {
       color: white;
     }
@@ -140,6 +140,6 @@ export const Certificate = styled.div`
 
   .checkbox:checked {
     border: none;
-    background-color: #3751FF;
+    background-color: #3751ff;
   }
-`
+`;

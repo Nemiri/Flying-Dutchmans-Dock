@@ -8,7 +8,7 @@ const App: React.FC = () => {
             <Routes/>
             <Global/>
         </>
-    )
-}
+    );
+};
 
 export default App;

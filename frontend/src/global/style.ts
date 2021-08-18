@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   * {
@@ -54,7 +54,7 @@ export default createGlobalStyle`
     background: var(--pw-background);
   }
 
-  body, input, textarea, button {
+  body, input, textarea, button, select {
     font: 500 1rem Poppins, sans-serif;
     color: #494D4B;
   }

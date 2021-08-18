@@ -4,7 +4,7 @@ export const Container = styled.div`
   background-color: var(--pb-background);
   height: 100vh;
   width: 350px;
-`
+`;
 
 export const LogoAndTitle = styled.div`
   height: 18vh;
@@ -22,19 +22,19 @@ export const LogoAndTitle = styled.div`
   }
 
   svg {
-    color: #1C64F2;
+    color: #1c64f2;
     margin-top: 1em;
     width: 72px;
     height: 72px;
   }
-`
+`;
 
 export const Navbar = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  
+
   list-style-type: none;
 
   li {
@@ -44,31 +44,32 @@ export const Navbar = styled.ul`
 
     padding: 20px;
     width: 100%;
-    
+
     background-color: var(--pb-background);
     border: none;
-    
+
     cursor: pointer;
-    
+
     p {
       padding-left: 1em;
       color: var(--w-text);
       font-weight: normal;
       font-size: 1.2em;
     }
-    
+
     svg {
       color: var(--w-text);
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       border-left-style: solid;
       border-color: var(--wh-text);
-      
+
       p {
         color: var(--wh-text);
       }
-      
+
       svg {
         color: var(--wh-text);
       }
@@ -76,4 +77,4 @@ export const Navbar = styled.ul`
       background-color: var(--pbh-background);
     }
   }
-`
+`;

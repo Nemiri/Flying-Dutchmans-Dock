@@ -17,7 +17,7 @@ const Routes: React.FC = () => (
       <Route path="/ships" component={Ships} />
         <Route path="/ship/:id" component={Ship} />
         <Route path="/create_ship" component={CreateShip} />
-        <Route path="/edit_ship" component={EditShip}/>
+        <Route path="/edit_ship/:ship_id" component={EditShip}/>
         <Route path="/create_cargo/:ship_id" component={CreateCargo} />
       <Route path="/docks/" component={Docks} />
       <Route path="/create_dock" component={CreateDock} />

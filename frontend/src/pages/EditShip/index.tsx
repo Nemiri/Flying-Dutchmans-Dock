@@ -24,7 +24,7 @@ interface EditShipForm {
 }
 
 interface Request {
-  id: string;
+  ship_id: string;
 }
 
 const EditShip: React.FC = () => {
@@ -41,12 +41,12 @@ const EditShip: React.FC = () => {
 
   const onSubmit = async (data: EditShipForm) => {
     try {
-      await api.put(`/ship/${params.id}`, data);
+      await api.put(`/ship/${params.ship_id}`, data);
     } catch (e) {
       console.log(e.message);
     }
 
-    history.push("/ships");
+    history.push(`/ships/${params.ship_id}`);
   };
 
   return (

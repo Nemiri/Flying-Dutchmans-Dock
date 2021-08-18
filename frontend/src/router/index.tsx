@@ -6,6 +6,7 @@ import Ship from "../pages/Ship";
 import CreateShip from "../pages/CreateShip";
 import Docks from "../pages/Dock";
 import Menu from "../components/Navbar";
+import CreateDock from "../pages/CreateDock";
 
 const Routes: React.FC = () => (
   <BrowserRouter>
@@ -15,6 +16,7 @@ const Routes: React.FC = () => (
       <Route path="/create_ship" component={CreateShip} />
       <Route path="/ship/:id" component={Ship} />
       <Route path="/docks/" component={Docks} />
+      <Route path="/create_dock" component={CreateDock} />
     </Switch>
   </BrowserRouter>
 );

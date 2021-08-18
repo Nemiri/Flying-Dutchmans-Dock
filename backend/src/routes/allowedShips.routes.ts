@@ -5,5 +5,6 @@ const allowedShipsController = new AllowedShipsController();
 const allowedShipsRouter = Router();
 
 allowedShipsRouter.post("/", allowedShipsController.create);
+allowedShipsRouter.delete("/:id", allowedShipsController.delete);
 
 export default allowedShipsRouter;

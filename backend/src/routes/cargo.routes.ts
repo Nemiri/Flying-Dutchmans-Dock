@@ -6,5 +6,7 @@ const cargoRouter = Router();
 
 cargoRouter.post("/", cargoController.create);
 cargoRouter.get("/:ship_id", cargoController.index);
+cargoRouter.delete("/:id", cargoController.delete);
+cargoRouter.put("/:id", cargoController.update);
 
 export default cargoRouter;

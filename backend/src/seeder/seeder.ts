@@ -311,10 +311,10 @@ export default function seeder() {
 
     pool.query(`
     INSERT INTO allowed_ships
-    (id, ship_id, dock_id, certification)
+    (id, ship_id, certification)
     VALUES
-    ("${allowedShipMalcolm.id}", "${shipMalcolm.id}", "${allowedShipMalcolm.dock_id}", "${allowedShipMalcolm.certification}"),
-    ("${allowedShipSalazar.id}", "${shipSalazar.id}", "${allowedShipSalazar.dock_id}", "${allowedShipSalazar.certification}");
+    ("${allowedShipMalcolm.id}", "${shipMalcolm.id}", NOW()),
+    ("${allowedShipSalazar.id}", "${shipSalazar.id}", NOW());
     `);
 
     pool.query(`

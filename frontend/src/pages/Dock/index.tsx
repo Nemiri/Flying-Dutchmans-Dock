@@ -1,38 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Table } from "./styles";
 
 import api from "../../api/api";
-import { useHistory } from "react-router-dom";
 
 interface Dock {
   id: string;
   name: string;
   max_ships: number;
+  ships: number;
   max_ship_size: number;
 }
 
 const Docks: React.FC = () => {
-  const history = useHistory();
-
   const [docks, setDocks] = useState<Dock[]>([]);
 
   useEffect(() => {
     api.get<Dock[]>("dock").then((response) => {
-      setDocks(
-        response.data
-        )
-      ;
+      setDocks(response.data);
     });
   }, []);
-
-  const seeDock = useCallback(
-    (id) => {
-      history.push(`dock/${id}`);
-    },
-    [history]
-  );
-
-  console.log(docks);
 
   return (
     <Container>
@@ -50,12 +36,10 @@ const Docks: React.FC = () => {
         <tbody>
           {docks.map((dock, index) => {
             return (
-              <tr onClick={() => seeDock(dock.id)}>
+              <tr>
                 <td>{index}</td>
-                <td>
-                  {dock.name}
-                  <br />
-                </td>
+                <td>{dock.name}</td>
+                <td>{dock.ships}</td>
                 <td>{dock.max_ships}</td>
               </tr>
             );

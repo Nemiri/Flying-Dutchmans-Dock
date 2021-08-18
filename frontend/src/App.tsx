@@ -3,12 +3,12 @@ import Global from "./global/style";
 import Routes from "./router";
 
 const App: React.FC = () => {
-    return (
-        <>
-            <Routes/>
-            <Global/>
-        </>
-    );
+  return (
+    <>
+      <Routes />
+      <Global />
+    </>
+  );
 };
 
 export default App;

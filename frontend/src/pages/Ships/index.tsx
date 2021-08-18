@@ -13,6 +13,7 @@ interface Ship {
   dock_name: string;
   arrival_time: string;
   isCertificated?: string;
+  certification_time?: string;
 }
 
 const Docks: React.FC = () => {
@@ -22,15 +23,20 @@ const Docks: React.FC = () => {
 
   useEffect(() => {
     api.get<Ship[]>("ship").then((response) => {
-      console.dir(response.data)
+      console.dir(response.data);
 
       setShips(
-        response.data.map(ship => {
-          if(!ship.arrival_time) return ship;
+        response.data.map((ship) => {
+          if (!ship.arrival_time) return ship;
+          if (!ship.certification_time) return ship;
 
           return {
             ...ship,
             arrival_time: format(parseISO(ship.arrival_time), "dd/MM/yyyy"),
+            certification_time: format(
+              parseISO(ship.certification_time),
+              "dd/MM/yyyy"
+            ),
           };
         })
       );
@@ -38,8 +44,8 @@ const Docks: React.FC = () => {
   }, []);
 
   const createShip = useCallback(() => {
-    history.push('/create_ship')
-  }, [history])
+    history.push("/create_ship");
+  }, [history]);
 
   const seeShip = useCallback(
     (id) => {
@@ -47,8 +53,6 @@ const Docks: React.FC = () => {
     },
     [history]
   );
-
-  console.log(ships);
 
   return (
     <Container>
@@ -82,7 +86,15 @@ const Docks: React.FC = () => {
                   <td>{ship.type}</td>
                   <td>{ship.ship_captain}</td>
                   <td>{ship.arrival_time}</td>
-                  <td>{ship.isCertificated}</td>
+                  <td>
+                    {ship.isCertificated !== null ? (
+                      <p style={{ color: "limegreen" }}>
+                        Certificado em {ship.certification_time}
+                      </p>
+                    ) : (
+                      <p style={{ color: "red" }}>Aguardando Certificação</p>
+                    )}
+                  </td>
                 </tr>
               );
             })}

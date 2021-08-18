@@ -16,7 +16,7 @@ export const Form = styled.form`
   padding: 32px;
   width: 100%;
   background-color: white;
-  
+
   display: grid;
   grid-template-columns: 33% 33% 33%;
   justify-content: space-between;
@@ -35,21 +35,21 @@ export const Form = styled.form`
     padding: 8px 16px;
     background: #c5c7cd;
     border-radius: 12px;
-    
+
     &:hover {
-      background-color: #1C64F2;
+      background-color: #1c64f2;
     }
-    
+
     color: white;
   }
-  
+
   select {
     margin-top: 8px;
     height: 32px;
     width: 100%;
     border: none;
     border-radius: 0;
-    border-bottom: solid #9FA2B4 2px;
+    border-bottom: solid #9fa2b4 2px;
 
     font-weight: normal;
     outline: none;
@@ -59,28 +59,28 @@ export const Form = styled.form`
     }
 
     &:focus {
-      border-color: #1C64F2;
-    } 
+      border-color: #1c64f2;
+    }
   }
-  
+
   input {
     margin-top: 8px;
     width: 100%;
     border: none;
-    border-bottom: solid #9FA2B4 2px;
+    border-bottom: solid #9fa2b4 2px;
 
     outline: none;
-    
+
     &::placeholder {
       font-weight: normal;
     }
-    
+
     &:focus {
-      border-color: #1C64F2;
+      border-color: #1c64f2;
     }
   }
-  
+
   .input-div {
     margin: 16px;
   }
-`
+`;

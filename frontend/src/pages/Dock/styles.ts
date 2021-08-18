@@ -45,8 +45,6 @@ export const Table = styled.table`
   }
 
   tr {
-    cursor: pointer;
-
     &:hover {
       background-color: var(--pw-background);
     }

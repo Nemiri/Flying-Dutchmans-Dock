@@ -1,8 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Container, InfoContainer, Certificate, ShipAndCargo } from "./styles";
 import api from "../../api/api";
-import {useHistory, useParams} from "react-router-dom";
+
+import { IoCheckmarkSharp } from "react-icons/io5";
+import { Container, InfoContainer, Certificate, ShipAndCargo } from "./styles";
+import { useHistory, useParams } from "react-router-dom";
+import { format, parseISO } from "date-fns";
 
 interface SingleShip {
   id: string;
@@ -17,6 +20,8 @@ interface SingleShip {
   dock_name: string;
   dock_id: string;
   arrival_time: string;
+  isCertificated?: string;
+  certification_time?: string;
 }
 
 interface Cargo {
@@ -42,14 +47,23 @@ const Ship: React.FC = () => {
         dock_id: ship.dock_id,
         ship_id: ship.id,
       });
-      history.push('/certifications')
+      history.push("/ships");
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   };
 
   useEffect(() => {
     api.get<SingleShip>(`ship/${params.id}`).then((response) => {
+      console.log(response.data.certification_time);
+
+      if (response.data.certification_time) {
+        response.data.certification_time = format(
+          parseISO(response.data.certification_time),
+          "dd/MM/yyyy"
+        );
+      }
+
       setShip(response.data);
     });
 
@@ -127,33 +141,47 @@ const Ship: React.FC = () => {
           </div>
         </InfoContainer>
       </ShipAndCargo>
-      <Certificate>
-        <div id="header">
-          <div>
-            <h2>Certificar</h2>
-            <p>Para a embarcação ser certificada, confirme a checklist.</p>
+      {ship.isCertificated == null ? (
+        <Certificate>
+          <form>
+            <div id="header">
+              <div>
+                <h2>Certificar</h2>
+                <p>Para a embarcação ser certificada, confirme a checklist.</p>
+              </div>
+              <button onClick={handleSubmit}>Certificar</button>
+            </div>
+            <div id="checklist-container">
+              <div>
+                <label className="checklist">
+                  <input type="checkbox" className="checkbox" />
+                  <p>Tem alguém armado?</p>
+                </label>
+                <hr />
+                <label className="checklist">
+                  <input type="checkbox" className="checkbox" />
+                  <p>Algum tripulante tem TikTok instalado?</p>
+                </label>
+                <hr />
+                <label className="checklist">
+                  <input type="checkbox" className="checkbox" />
+                  <p>Certeza que ninguém tá armado?</p>
+                </label>
+              </div>
+            </div>
+          </form>
+        </Certificate>
+      ) : (
+        <Certificate>
+          <div className="certificated">
+            <IoCheckmarkSharp color="limegreen" />
+            <div>
+              <h2>Navio Certificado em {ship.certification_time}</h2>
+              <p>Este navio foi certificado e está pronto para partir</p>
+            </div>
           </div>
-        </div>
-        <form id="checklist-container" onSubmit={handleSubmit}>
-          <button type="submit">Certificar</button>
-          <div>
-            <label className="checklist">
-              <input type="checkbox" className="checkbox" />
-              <p>Tem alguém armado?</p>
-            </label>
-            <hr />
-            <label className="checklist">
-              <input type="checkbox" className="checkbox" />
-              <p>Algum tripulante tem TikTok instalado?</p>
-            </label>
-            <hr />
-            <label className="checklist">
-              <input type="checkbox" className="checkbox" />
-              <p>Certeza que ninguém tá armado?</p>
-            </label>
-          </div>
-        </form>
-      </Certificate>
+        </Certificate>
+      )}
     </Container>
   );
 };

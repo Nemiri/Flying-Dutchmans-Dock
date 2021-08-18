@@ -1,10 +1,10 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import { Container, Form } from './styles'
+import { Container, Form } from "./styles";
 import api from "../../api/api";
 
-import { useForm } from 'react-hook-form'
-import {useHistory} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 interface Dock {
   id: string;
@@ -24,37 +24,42 @@ interface ShipForm {
 }
 
 const CreateShip: React.FC = () => {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
   const [docks, setDocks] = useState<Dock[]>([]);
   const history = useHistory();
 
   useEffect(() => {
-    api.get('/dock').then(response => {
-      setDocks(response.data)
-    })
-  }, [])
+    api.get("/dock").then((response) => {
+      setDocks(response.data);
+    });
+  }, []);
 
   const onSubmit = async (data: ShipForm) => {
     try {
-      await api.post('/ship', data)
+      await api.post("/ship", data);
     } catch (e) {
-      console.log(e.message)
+      console.log(e.message);
     }
 
-    history.push('/ships')
-  }
+    history.push("/ships");
+  };
 
   return (
     <Container>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-div">
           <label>Nome da Embarcação</label>
-          <input {...register("name")} placeholder="Todas as embarcações legais tem nome!"/>
+          <input
+            {...register("name")}
+            placeholder="Todas as embarcações legais tem nome!"
+          />
         </div>
         <div className="input-div">
           <label>Tipo da Embarcação</label>
           <select {...register("type")}>
-            <option value="" disabled selected hidden>Tipo da Embarcação</option>
+            <option value="" disabled selected hidden>
+              Tipo da Embarcação
+            </option>
             <option value="Exploração">Exploração</option>
             <option value="Cargueiro">Cargueiro</option>
             <option value="Militar">Militar</option>
@@ -63,40 +68,60 @@ const CreateShip: React.FC = () => {
         </div>
         <div className="input-div">
           <label>Tamanho da Embarcação (em m²)</label>
-          <input {...register("size", { valueAsNumber: true })} placeholder="É melhor ser grande." />
+          <input
+            {...register("size", { valueAsNumber: true })}
+            placeholder="É melhor ser grande."
+          />
         </div>
         <div className="input-div">
           <label>Máximo de Tripulantes</label>
-          <input {...register("max_tripulation", { valueAsNumber: true })} placeholder="Lembre-se: não é como coração de mãe"/>
+          <input
+            {...register("max_tripulation", { valueAsNumber: true })}
+            placeholder="Lembre-se: não é como coração de mãe"
+          />
         </div>
         <div className="input-div">
           <label>Velocidade Máxima</label>
-          <input {...register("max_speed", { valueAsNumber: true })} placeholder="Será que alcança o Holandês Voador?"/>
+          <input
+            {...register("max_speed", { valueAsNumber: true })}
+            placeholder="Será que alcança o Holandês Voador?"
+          />
         </div>
         <div className="input-div">
           <label>Nome do Capitão</label>
-          <input {...register("ship_captain")} placeholder="Se for Jack Sparrow é melhor procurar outro lugar"/>
+          <input
+            {...register("ship_captain")}
+            placeholder="Se for Jack Sparrow é melhor procurar outro lugar"
+          />
         </div>
         <div className="input-div">
           <label>Máximo de Carga (Kg)</label>
-          <input {...register("max_cargo", { valueAsNumber: true })} placeholder="Tá carregando o que aí? Pedras?"/>
+          <input
+            {...register("max_cargo", { valueAsNumber: true })}
+            placeholder="Tá carregando o que aí? Pedras?"
+          />
         </div>
         <div className="input-div">
           <label>Tripulação Atual</label>
-          <input {...register("tripulation", { valueAsNumber: true })} placeholder="Vai fazer festa?"/>
+          <input
+            {...register("tripulation", { valueAsNumber: true })}
+            placeholder="Vai fazer festa?"
+          />
         </div>
         <div className="input-div">
           <label>Doca</label>
           <select {...register("dock_id")}>
-            <option value="" disabled selected hidden>Escolha uma Doca</option>
-            {docks.map(dock => {
-              return (
-                  <option value={dock.id}>{dock.name}</option>
-              )
+            <option value="" disabled selected hidden>
+              Escolha uma Doca
+            </option>
+            {docks.map((dock) => {
+              return <option value={dock.id}>{dock.name}</option>;
             })}
           </select>
         </div>
-        <button type="submit" value="submit">Cadastrar</button>
+        <button type="submit" value="submit">
+          Cadastrar
+        </button>
       </Form>
     </Container>
   );

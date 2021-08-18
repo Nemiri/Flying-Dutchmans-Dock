@@ -33,7 +33,7 @@ const Menu: React.FC = () => {
 
     await api.post("/seeder");
     localStorage.setItem("isSeeded", JSON.stringify(true));
-  }
+  };
 
   return (
     <Container>

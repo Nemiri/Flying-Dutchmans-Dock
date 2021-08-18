@@ -7,7 +7,6 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: start;
 
   padding: 24px;
@@ -73,6 +72,7 @@ export const InfoContainer = styled.div`
 
 export const Certificate = styled.div`
   padding: 32px;
+  margin-top: 1.25rem;
 
   height: 36vh;
   width: 100%;
@@ -81,13 +81,34 @@ export const Certificate = styled.div`
   border-radius: 8px;
   border: solid #dde0ec 1px;
 
-  #checklist-container {
-    height: 75%;
-    overflow: scroll;
+  .certificated {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    h2,
+    p {
+      margin-left: 16px;
+    }
+  }
+
+  svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    #checklist-container {
+      height: 100%;
+      overflow: scroll;
+    }
   }
 
   button {
-    position: relative;
     height: 2em;
     width: 8em;
 

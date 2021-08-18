@@ -50,9 +50,11 @@ export default class ShipController {
     const { id } = request.params;
 
     pool.query(`
-          SELECT S.*, D.name as 'dock_name', MAX(C.risk_class) as 'highest_risk_class'
-          FROM ship S, dock D, cargo C
-          WHERE S.id = "${id}" AND S.dock_id = D.id AND C.ship_id = S.id;`,
+          SELECT S.*, D.name as 'dock_name', MAX(C.risk_class) as 'highest_risk_class', A.id as 'isCertificated', A.certification as 'certification_time'
+            FROM dock D, cargo C, ship S
+            left join allowed_ships A
+            on S.id = A.ship_id 
+            WHERE S.id = "${id}" AND S.dock_id = D.id AND C.ship_id = S.id;`,
       (e, result: RowDataPacket) => {
         if (e)
           return response.status(400).json({
@@ -69,7 +71,7 @@ export default class ShipController {
   public async index(request: Request, response: Response) {
     pool.query(
       `
-            select s.*, al.id as 'isCertificated', d.name as 'dock_name', an.arrival_time as 'arrival_time'
+            select s.*, al.id as 'isCertificated', al.certification as 'certification_time', d.name as 'dock_name', an.arrival_time as 'arrival_time'
             from dock d, ship s
             left join allowed_ships al
             on s.id = al.ship_id

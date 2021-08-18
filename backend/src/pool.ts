@@ -1,4 +1,5 @@
-import mysql from "mysql2";
+import { Pool } from "pg";
 import config from "./config/config";
 
-export default mysql.createPool(config);
+const pool = new Pool(config);
+export default pool;

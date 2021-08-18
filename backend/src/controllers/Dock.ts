@@ -9,9 +9,12 @@ export default class DockController {
         pool.query(
             `
         INSERT INTO dock (id, name, max_ships, max_ship_size) 
-        VALUES ("${id}", "${request.body.name}", ${request.body.max_ships}, ${request.body.max_ship_size});`,
+        VALUES ('${id}', '${request.body.name}', ${request.body.max_ships}, ${request.body.max_ship_size});`,
             async (e, result) => {
-                if (e) return response.status(400).json({message: e.message});
+                if (e) {
+                    console.log(e.message);
+                    return response.status(400).json({message: e.message});
+                } 
 
                 return response.json(result);
             }
@@ -21,14 +24,14 @@ export default class DockController {
     }
 
     public async index(request: Request, response: Response) {
-        pool.query(`select d.*, count(s.id) as 'ships'
+        pool.query(`select d.*, count(s.id) as "ships"
                     from dock d
                     left join ship s
                     on d.id = s.dock_id
-                    group by d.name;`, async (e, result) => {
+                    group by d.id;`, async (e, result) => {
             if (e) return response.status(400).json({message: e.message});
 
-            return response.json(result);
+            return response.json(result.rows);
         });
 
         return response.status(200);

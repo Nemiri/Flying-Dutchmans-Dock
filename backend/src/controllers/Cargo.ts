@@ -34,7 +34,7 @@ export default class CargoController {
       (e, result) => {
         if (e) return response.status(400).json({ message: e.message });
 
-        return response.status(200).json(result);
+        return response.status(200).json(result.rows);
       }
     );
   }

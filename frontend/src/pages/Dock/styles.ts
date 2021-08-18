@@ -11,12 +11,40 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: start;
 
+  #containerHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
   h1 {
     margin-bottom: 2rem;
   }
 
   h2 {
     margin-bottom: 1rem;
+  }
+
+    button {
+      position: relative;
+      height: 2.5rem;
+      width: 16rem;
+
+      border: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 16px;
+      background: #c5c7cd;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: #1C64F2;
+      }
+      
+      color: white;
   }
 `;
 

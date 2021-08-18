@@ -27,9 +27,11 @@ const Docks: React.FC = () => {
   
   return (
     <Container>
-      <button onClick={createDock}>Registrar Embarcação</button>
       <h1>Docas</h1>
+      <div id = "containerHeader">
       <h2>Todos as Docas em funcionamento</h2>
+        <button onClick={createDock}>Registrar Doca</button>
+      </div>
       <Table>
         <thead>
           <tr>

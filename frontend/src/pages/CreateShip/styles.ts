@@ -19,13 +19,13 @@ export const Form = styled.form`
   
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  justify-content: start;
-  align-items: center;
+  justify-content: space-between;
 
   button {
     position: relative;
     height: 2rem;
     width: 8rem;
+    margin: 16px;
 
     border: none;
     display: flex;
@@ -39,10 +39,8 @@ export const Form = styled.form`
     &:hover {
       background-color: #1C64F2;
     }
-
-    p {
-      color: white;
-    }
+    
+    color: white;
   }
   
   select {

@@ -49,11 +49,10 @@ export default class ShipController {
   public async findOne(request: Request, response: Response) {
     const { id } = request.params;
 
-    pool.query(
-      `
-                SELECT S.*, D.name as 'dock_name', MAX(C.risk_class) as 'highest_risk_class'
-                FROM ship S, dock D, cargo C
-                WHERE S.id = "${id}" AND S.dock_id = D.id AND C.ship_id = S.id;`,
+    pool.query(`
+          SELECT S.*, D.name as 'dock_name', MAX(C.risk_class) as 'highest_risk_class'
+          FROM ship S, dock D, cargo C
+          WHERE S.id = "${id}" AND S.dock_id = D.id AND C.ship_id = S.id;`,
       (e, result: RowDataPacket) => {
         if (e)
           return response.status(400).json({
@@ -72,7 +71,8 @@ export default class ShipController {
       `
                 SELECT S.*, D.name as 'dock_name', A.arrival_time as 'arrival_time'
                 FROM ship S, dock D, announcement A
-                WHERE S.dock_id = D.id AND A.dock_id = D.id AND A.ship_id = S.id;`,
+                WHERE S.dock_id = D.id
+                GROUP BY S.name;`,
       (e, result) => {
         if (e) return response.status(400).json({ message: e.message });
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, BrowserRouter, Route } from "react-router-dom";
 
-import Ships from "../pages/Navies";
+import Ships from "../pages/Ships";
 import Ship from "../pages/Ship";
 import CreateShip from "../pages/CreateShip";
 

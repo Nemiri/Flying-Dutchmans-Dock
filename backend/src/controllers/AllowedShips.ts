@@ -9,7 +9,7 @@ export default class AllowedShipsController {
     pool.query(
       `
         INSERT INTO allowed_ships (id, dock_id, ship_id, certification) 
-        VALUES ("${id}", "${request.body.dock_id}", "${request.body.ship_id}", ${request.body.certification});`,
+        VALUES ("${id}", "${request.body.dock_id}", "${request.body.ship_id}", NOW());`,
       (e, result) => {
         if (e)
           return response.status(400).json({

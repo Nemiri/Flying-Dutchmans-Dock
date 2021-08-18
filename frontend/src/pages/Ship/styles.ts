@@ -88,7 +88,8 @@ export const Certificate = styled.div`
 
   button {
     position: relative;
-    height: 60%;
+    height: 2em;
+    width: 8em;
 
     border: none;
     display: flex;
@@ -98,10 +99,7 @@ export const Certificate = styled.div`
     padding: 8px 16px;
     background: #c5c7cd;
     border-radius: 12px;
-
-    p {
-      color: white;
-    }
+    color: white;
   }
 
   hr {

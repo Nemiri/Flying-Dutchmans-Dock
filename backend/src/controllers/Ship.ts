@@ -69,10 +69,13 @@ export default class ShipController {
   public async index(request: Request, response: Response) {
     pool.query(
       `
-                SELECT S.*, D.name as 'dock_name', A.arrival_time as 'arrival_time'
-                FROM ship S, dock D, announcement A
-                WHERE S.dock_id = D.id
-                GROUP BY S.name;`,
+            select s.*, al.id as 'isCertificated', d.name as 'dock_name', an.arrival_time as 'arrival_time'
+            from dock d, ship s
+            left join allowed_ships al
+            on s.id = al.ship_id
+            left join announcement an
+            on s.id = an.ship_id
+            where d.id = s.dock_id;`,
       (e, result) => {
         if (e) return response.status(400).json({ message: e.message });
 

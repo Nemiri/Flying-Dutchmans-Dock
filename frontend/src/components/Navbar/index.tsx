@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { Container, Navbar, LogoAndTitle } from "./style";
 
-import { FaAnchor, FaShip, FaTicketAlt } from "react-icons/fa";
+import { FaAnchor, FaShip } from "react-icons/fa";
 import { IoMegaphone } from "react-icons/io5";
 import { useHistory } from "react-router-dom";
 import { GiCargoShip } from "react-icons/gi";
@@ -25,19 +25,15 @@ const Menu: React.FC = () => {
     history.push("/announcements");
   }, [history]);
 
-  const redirectCertificates = useCallback(() => {
-    history.push("/certificates");
-  }, [history]);
-
-  const seed = useCallback(() => {
+  const seed = async () => {
     if (localStorage.getItem("isSeeded") === "true") {
       alert("O Banco de Dados já foi semeado.");
       return;
     }
 
-    api.post("/seeder");
+    await api.post("/seeder");
     localStorage.setItem("isSeeded", JSON.stringify(true));
-  }, []);
+  }
 
   return (
     <Container>
@@ -53,10 +49,6 @@ const Menu: React.FC = () => {
         <li onClick={redirectNavies}>
           <FaShip />
           <p>Navios</p>
-        </li>
-        <li onClick={redirectCertificates}>
-          <FaTicketAlt />
-          <p>Certificados</p>
         </li>
         <li onClick={redirectAnnouncements}>
           <IoMegaphone />

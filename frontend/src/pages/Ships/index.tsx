@@ -12,6 +12,7 @@ interface Ship {
   ship_captain: string;
   dock_name: string;
   arrival_time: string;
+  isCertificated?: string;
 }
 
 const Docks: React.FC = () => {
@@ -21,8 +22,12 @@ const Docks: React.FC = () => {
 
   useEffect(() => {
     api.get<Ship[]>("ship").then((response) => {
+      console.dir(response.data)
+
       setShips(
         response.data.map(ship => {
+          if(!ship.arrival_time) return ship;
+
           return {
             ...ship,
             arrival_time: format(parseISO(ship.arrival_time), "dd/MM/yyyy"),
@@ -61,6 +66,7 @@ const Docks: React.FC = () => {
               <th>Tipo</th>
               <th>Nome do Capitão</th>
               <th>Data da Ancoragem</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -76,6 +82,7 @@ const Docks: React.FC = () => {
                   <td>{ship.type}</td>
                   <td>{ship.ship_captain}</td>
                   <td>{ship.arrival_time}</td>
+                  <td>{ship.isCertificated}</td>
                 </tr>
               );
             })}

@@ -9,12 +9,12 @@ export default class RouteController {
     pool.query(
       `
             INSERT INTO routes (id, ship_id, distance, source, destination, duration)
-            VALUES("${id}", 
-            "${request.body.ship_id}", 
+            VALUES('${id}', 
+            '${request.body.ship_id}', 
             ${request.body.distance},
-            "${request.body.source}",
-            "${request.body.destination}",
-            "${request.body.duration}");
+            '${request.body.source}',
+            '${request.body.destination}',
+            '${request.body.duration}');
         `,
       async (e, result) => {
         if (e)
@@ -32,7 +32,7 @@ export default class RouteController {
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
 
-    pool.query(`DELETE FROM routes WHERE id = "${id}";`, (e) => {
+    pool.query(`DELETE FROM routes WHERE id = '${id}';`, (e) => {
       if (e)
         return response.status(400).json({
           message: e.message,
@@ -51,9 +51,9 @@ export default class RouteController {
       `
         UPDATE routes
         SET distance = ${request.body.distance},
-        source = "${request.body.source}",
-        destination = "${request.body.destination}",
-        duration = "${request.body.duration}");
+        source = '${request.body.source}',
+        destination = '${request.body.destination}',
+        duration = '${request.body.duration}');
       `,
       async (e, result) => {
         if (e)

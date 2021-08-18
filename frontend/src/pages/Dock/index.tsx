@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "./styles";
-
+import { useHistory } from "react-router-dom";
 import api from "../../api/api";
 
 interface Dock {
@@ -12,6 +12,7 @@ interface Dock {
 }
 
 const Docks: React.FC = () => {
+  const history = useHistory();
   const [docks, setDocks] = useState<Dock[]>([]);
 
   useEffect(() => {
@@ -20,10 +21,17 @@ const Docks: React.FC = () => {
     });
   }, []);
 
+  const createDock = () => {
+    history.push("/create_dock");
+  };
+  
   return (
     <Container>
       <h1>Docas</h1>
+      <div id = "containerHeader">
       <h2>Todos as Docas em funcionamento</h2>
+        <button onClick={createDock}>Registrar Doca</button>
+      </div>
       <Table>
         <thead>
           <tr>

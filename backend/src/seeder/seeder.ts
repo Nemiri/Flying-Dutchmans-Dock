@@ -75,7 +75,7 @@ export default async function seeder() {
         id: uuidv4(),
         name: 'Santa Maria',
         max_speed: 255,
-        ship_captain: 'Pedro Cabral Álvares',
+        ship_captain: 'Rodrigo Faro',
         size: 85,
         type: 'Comerciante',
         max_tripulation: 10,

@@ -53,6 +53,10 @@ const Ship: React.FC = () => {
     }
   };
 
+  const createCargo = () => {
+    history.push(`/create_cargo/${params.id}`);
+  }
+
   useEffect(() => {
     api.get<SingleShip>(`ship/${params.id}`).then((response) => {
       if (response.data.certification_time) {
@@ -69,8 +73,6 @@ const Ship: React.FC = () => {
       setCargo(response.data);
     });
   }, [params.id]);
-
-  console.dir(ship)
 
   return (
     <Container>
@@ -110,9 +112,11 @@ const Ship: React.FC = () => {
         </InfoContainer>
         <InfoContainer>
           <div className="header">
-            <h2>Informações da Carga</h2>
-            <p>Classe mais alta de risco: {ship.highest_risk_class}</p>
-            <button id='add-cargo'>registrar carga</button>
+            <div>
+              <h2>Informações da Carga</h2>
+              <p>Classe mais alta de risco: {ship.highest_risk_class}</p>
+            </div>
+            <button id='add-cargo' onClick={createCargo}>registrar carga</button>
           </div>
           <div id="general-info">
             {cargo.map((single_cargo) => {
@@ -140,7 +144,7 @@ const Ship: React.FC = () => {
       {ship.isCertificated == null ? (
         <Certificate>
           <form>
-            <div id="header">
+            <div id="certification-header">
               <div>
                 <h2>Certificar</h2>
                 <p>Para a embarcação ser certificada, confirme a checklist.</p>

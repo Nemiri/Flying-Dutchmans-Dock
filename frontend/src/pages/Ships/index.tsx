@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Table } from "./styles";
 import { parseISO, format } from "date-fns";
 
@@ -43,16 +43,13 @@ const Docks: React.FC = () => {
     });
   }, []);
 
-  const createShip = useCallback(() => {
+  const createShip = () => {
     history.push("/create_ship");
-  }, [history]);
+  };
 
-  const seeShip = useCallback(
-    (id) => {
-      history.push(`ship/${id}`);
-    },
-    [history]
-  );
+  const seeShip = (id: string) => {
+    history.push(`ship/${id}`);
+  };
 
   return (
     <Container>

@@ -14,6 +14,26 @@ export const Container = styled.div`
   h1 {
     padding-bottom: 24px;
   }
+
+  button {
+    height: 2em;
+    width: 10em;
+
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    background: #c5c7cd;
+    border-radius: 12px;
+
+    &:hover {
+      background-color: #1C64F2;
+    }
+    
+    color: white;
+  }
 `;
 
 export const ShipAndCargo = styled.div`
@@ -36,9 +56,15 @@ export const InfoContainer = styled.div`
 
   border-radius: 8px;
   border: solid #dde0ec 1px;
-
+  
   .header {
-    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    h2, p {
+      align-self: start;
+    }
   }
 
   #general-info {
@@ -46,13 +72,12 @@ export const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 
     overflow: scroll;
     max-height: 100%;
 
     .cell {
-      margin: 16px 0;
+      margin: 8px 0;
       width: 100%;
       text-align: center;
 
@@ -112,21 +137,6 @@ export const Certificate = styled.div`
     }
   }
 
-  button {
-    height: 2em;
-    width: 8em;
-
-    border: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-    background: #c5c7cd;
-    border-radius: 12px;
-    color: white;
-  }
-
   hr {
     border: none;
     background-color: #dde0ec;
@@ -134,13 +144,14 @@ export const Certificate = styled.div`
     width: 100%;
   }
 
-  #header {
+  #certification-header {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 24px;
   }
-
+  
   .checklist {
     margin: 8px 0;
 

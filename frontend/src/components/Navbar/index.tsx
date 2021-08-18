@@ -26,13 +26,11 @@ const Menu: React.FC = () => {
   }, [history]);
 
   const seed = async () => {
-    if (localStorage.getItem("isSeeded") === "true") {
-      alert("O Banco de Dados já foi semeado.");
-      return;
+    try {
+      await api.post("/seeder");
+    } catch (e) {
+      alert("Você já deu seed.")
     }
-
-    await api.post("/seeder");
-    localStorage.setItem("isSeeded", JSON.stringify(true));
   };
 
   return (

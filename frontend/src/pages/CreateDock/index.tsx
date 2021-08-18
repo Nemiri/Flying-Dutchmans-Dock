@@ -4,6 +4,7 @@ import api from "../../api/api";
 
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import React from "react";
 
 interface DockForm {
   name: string;
@@ -27,6 +28,7 @@ const CreateDock: React.FC = () => {
 
   return (
     <Container>
+      <h2>Registrar Doca</h2>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-div">
           <label>Nome da Doca</label>

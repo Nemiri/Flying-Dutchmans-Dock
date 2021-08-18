@@ -37,6 +37,7 @@ const CreateShip: React.FC = () => {
 
     return (
         <Container>
+            <h2>Registrar Carga</h2>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <div className="input-div">
                     <label>Tipo da Carga</label>

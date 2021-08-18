@@ -1,8 +1,9 @@
 import {Router} from "express";
-import seeder from "../seeder/seeder";
+import Seeder from "../seeder/seeder";
 
+const seeder = new Seeder()
 const seederRouter = Router();
 
-seederRouter.post('/', seeder);
+seederRouter.post('/', seeder.execute);
 
 export default seederRouter;

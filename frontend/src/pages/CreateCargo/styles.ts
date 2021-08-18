@@ -10,6 +10,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+
+  h2 {
+    margin-bottom: 24px;
+  }
 `;
 
 export const Form = styled.form`

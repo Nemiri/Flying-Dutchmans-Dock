@@ -36,7 +36,13 @@ const CreateShip: React.FC = () => {
 
   const onSubmit = async (data: ShipForm) => {
     try {
-      await api.post("/ship", data);
+      api.post("/ship", data).then(response => {
+        if (response.status === 200) {
+          alert('O banco foi semado com valores predefinidos!')
+        } else {
+          alert('Erro ao semear o banco, talvez você já tenha semeado?')
+        }
+      });
     } catch (e) {
       console.log(e.message);
     }
@@ -46,6 +52,7 @@ const CreateShip: React.FC = () => {
 
   return (
     <Container>
+      <h2>Registrar Embarcação</h2>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-div">
           <label>Nome da Embarcação</label>

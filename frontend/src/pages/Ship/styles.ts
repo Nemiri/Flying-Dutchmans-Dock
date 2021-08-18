@@ -68,6 +68,10 @@ export const InfoContainer = styled.div`
       background-color: #dfe0eb;
     }
   }
+  
+  #add-cargo {
+    align-self: end;
+  }
 `;
 
 export const Certificate = styled.div`

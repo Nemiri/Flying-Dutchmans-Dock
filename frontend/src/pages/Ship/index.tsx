@@ -55,8 +55,6 @@ const Ship: React.FC = () => {
 
   useEffect(() => {
     api.get<SingleShip>(`ship/${params.id}`).then((response) => {
-      console.log(response.data.certification_time);
-
       if (response.data.certification_time) {
         response.data.certification_time = format(
           parseISO(response.data.certification_time),
@@ -71,6 +69,8 @@ const Ship: React.FC = () => {
       setCargo(response.data);
     });
   }, [params.id]);
+
+  console.dir(ship)
 
   return (
     <Container>
@@ -105,11 +105,6 @@ const Ship: React.FC = () => {
             <div className="cell">
               <p>Peso máximo de carga</p>
               <h3>{ship.max_cargo} Kg</h3>
-              <hr />
-            </div>
-            <div className="cell">
-              <p>Certificado em</p>
-              <h3>25/08/2021</h3>
             </div>
           </div>
         </InfoContainer>
@@ -117,6 +112,7 @@ const Ship: React.FC = () => {
           <div className="header">
             <h2>Informações da Carga</h2>
             <p>Classe mais alta de risco: {ship.highest_risk_class}</p>
+            <button id='add-cargo'>registrar carga</button>
           </div>
           <div id="general-info">
             {cargo.map((single_cargo) => {

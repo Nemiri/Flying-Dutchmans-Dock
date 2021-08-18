@@ -9,10 +9,10 @@ export default class CargoController {
     pool.query(
       `
       INSERT INTO cargo (id, ship_id, type, weight, risk_class)
-       VALUES ("${id}", 
-       "${request.body.ship_id}",
-       "${request.body.type}", 
-       "${request.body.weight}", 
+       VALUES ('${id}', 
+       '${request.body.ship_id}',
+       '${request.body.type}', 
+       '${request.body.weight}', 
        ${request.body.risk_class});
        `,
       (e, result) => {
@@ -30,7 +30,7 @@ export default class CargoController {
     const { ship_id } = request.params;
 
     pool.query(
-      `SELECT type, weight, risk_class FROM cargo WHERE ship_id = "${ship_id}"`,
+      `SELECT type, weight, risk_class FROM cargo WHERE ship_id = '${ship_id}'`,
       (e, result) => {
         if (e) return response.status(400).json({ message: e.message });
 

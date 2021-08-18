@@ -9,11 +9,11 @@ export default class AnnouncementController {
     pool.query(
       `
             INSERT INTO announcement (id, dock_id, ship_id, arrival_time, departure_time)
-            VALUES ("${id}", 
-            "${request.body.dock_id}", 
-            "${request.body.ship_id}", 
-            "${request.body.arrival_time}", 
-            "${request.body.departure_time}");`,
+            VALUES ('${id}', 
+            '${request.body.dock_id}', 
+            '${request.body.ship_id}', 
+            '${request.body.arrival_time}', 
+            '${request.body.departure_time}');`,
       (e, result) => {
         if (e)
           return response.status(400).json({
@@ -28,7 +28,7 @@ export default class AnnouncementController {
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
 
-    pool.query(`DELETE FROM announcement WHERE id = "${id}";`, (e) => {
+    pool.query(`DELETE FROM announcement WHERE id = '${id}';`, (e) => {
       if (e)
         return response.status(400).json({
           message: e.message,

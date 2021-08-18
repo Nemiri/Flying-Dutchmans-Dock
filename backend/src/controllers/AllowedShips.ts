@@ -9,7 +9,7 @@ export default class AllowedShipsController {
     pool.query(
       `
         INSERT INTO allowed_ships (id, ship_id, certification) 
-        VALUES ("${id}", "${request.body.ship_id}", NOW());`,
+        VALUES ('${id}', '${request.body.ship_id}', NOW());`,
       (e, result) => {
         if (e)
           return response.status(400).json({
@@ -24,7 +24,7 @@ export default class AllowedShipsController {
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
 
-    pool.query(`DELETE FROM allowed_ships WHERE id = "${id}";`, (e) => {
+    pool.query(`DELETE FROM allowed_ships WHERE id = '${id}';`, (e) => {
       if (e)
         return response.status(400).json({
           message: e.message,

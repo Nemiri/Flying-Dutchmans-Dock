@@ -26,7 +26,7 @@ export const Container = styled.div`
     align-items: center;
     padding: 8px 16px;
     background: #c5c7cd;
-    border-radius: 12px;
+    border-radius: 4px;
 
     &:hover {
       background-color: #1C64F2;

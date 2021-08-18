@@ -9,8 +9,6 @@ import { FaSeedling } from "react-icons/fa";
 import api from "../../api/api";
 
 const Menu: React.FC = () => {
-  localStorage.setItem("isSeeded", JSON.stringify(false));
-
   const history = useHistory();
 
   const redirectDocks = useCallback(() => {
@@ -28,8 +26,9 @@ const Menu: React.FC = () => {
   const seed = async () => {
     try {
       await api.post("/seeder");
+      alert("O banco de dados foi semeado com valores pré-definidos")
     } catch (e) {
-      alert("Você já deu seed.")
+      alert("Você já semeou >:(")
     }
   };
 

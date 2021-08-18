@@ -5,26 +5,28 @@ import { Request, Response } from "express";
 
 export default class Seeder {
     public async execute(request: Request, response: Response) {
-        const isSeeded = await pool.query(`SELECT id FROM dock WHERE name = 'Doca Alfa'`)
+        const isSeeded = await pool.query(`SELECT id FROM dock WHERE name = 'Alfa'`)
 
         if (isSeeded.rows.length > 0) return response.status(400).json({message: 'banco já semeado'})
 
         //DOCKS
         const dockalfa = {
             id: uuidv4(),
-            name: 'Doca Alfa',
+            name: 'Alfa',
             max_ships: 50,
             max_ship_size: 155
         }
+
         const dockbeta = {
             id: uuidv4(),
-            name: 'Doca Beta',
+            name: 'Beta',
             max_ships: 35,
             max_ship_size: 350
         }
+
         const docksigma = {
             id: uuidv4(),
-            name: 'Doca Sigma',
+            name: 'Sigma',
             max_ships: 20,
             max_ship_size: 755
         }
@@ -41,6 +43,7 @@ export default class Seeder {
             max_cargo: 260000,
             dock_id: dockalfa.id
         }
+
         const shipBismark = {
             id: uuidv4(),
             name: 'Bismark',
@@ -65,6 +68,7 @@ export default class Seeder {
             max_cargo: 260000,
             dock_id: dockbeta.id
         }
+
         const shipTchaikovsky = {
             id: uuidv4(),
             name: 'Tchaikovsky',
@@ -89,6 +93,7 @@ export default class Seeder {
             max_cargo: 1100,
             dock_id: docksigma.id
         }
+
         const shipADP = {
             id: uuidv4(),
             name: 'Analysts Pulli',
@@ -109,6 +114,7 @@ export default class Seeder {
             weight: 155000,
             risk_class: 3
         }
+
         const cargoBismark = {
             id: uuidv4(),
             ship_id: shipBismark.id,
@@ -125,6 +131,7 @@ export default class Seeder {
             weight: 35500,
             risk_class: 5
         }
+
         const cargoTchaikovsky = {
             id: uuidv4(),
             ship_id: shipTchaikovsky.id,
@@ -141,6 +148,7 @@ export default class Seeder {
             weight: 880,
             risk_class: 2
         }
+
         const cargoADP = {
             id: uuidv4(),
             ship_id: shipADP.id,
@@ -156,6 +164,7 @@ export default class Seeder {
             ship_id: shipMalcolm.id,
             arrival_time: '2021-06-18 11:35:48'
         }
+
         const announcementBismark = {
             id: uuidv4(),
             dock_id: shipBismark.dock_id,
@@ -170,6 +179,7 @@ export default class Seeder {
             ship_id: shipSalazar.id,
             arrival_time: '2020-12-23 18:27:36'
         }
+
         const announcementTchaikovsky = {
             id: uuidv4(),
             dock_id: shipTchaikovsky.dock_id,
@@ -184,6 +194,7 @@ export default class Seeder {
             ship_id: shipSantaMaria.id,
             arrival_time: '2022-01-01 09:11:35'
         }
+
         const announcementADP = {
             id: uuidv4(),
             dock_id: shipADP.dock_id,
@@ -198,6 +209,7 @@ export default class Seeder {
             dock_id: shipMalcolm.dock_id,
             certification: '2021-06-19 02:04:19'
         }
+
         const allowedShipSalazar = {
             id: uuidv4(),
             ship_id: shipSalazar.id,
@@ -213,6 +225,7 @@ export default class Seeder {
             source: 'Porto Velho, Brasil',
             destination: 'Orlando, USA'
         }
+
         const routeBismark = {
             id: uuidv4(),
             ship_id: shipBismark.id,
@@ -229,6 +242,7 @@ export default class Seeder {
             source: 'Lisboa, Portugal',
             destination: 'San Antonio, Chile'
         }
+
         const routeTchaikovsky = {
             id: uuidv4(),
             ship_id: shipTchaikovsky.id,
@@ -245,6 +259,7 @@ export default class Seeder {
             source: 'Porto Velho, Brasil',
             destination: 'Altamira, Mexico'
         }
+
         const routeADP = {
             id: uuidv4(),
             ship_id: shipMalcolm.id,

@@ -57,6 +57,10 @@ const Ship: React.FC = () => {
     history.push(`/create_cargo/${params.id}`);
   }
 
+  const editShip = () => {
+    history.push(`/edit_ship/${params.id}`);
+  }
+
   useEffect(() => {
     api.get<SingleShip>(`ship/${params.id}`).then((response) => {
       if (response.data.certification_time) {
@@ -80,8 +84,11 @@ const Ship: React.FC = () => {
       <ShipAndCargo>
         <InfoContainer>
           <div className="header">
-            <h2>Informações</h2>
-            <p>{ship.dock_name}</p>
+            <div>
+              <h2>Informações</h2>
+              <p>{ship.dock_name}</p>
+            </div>
+            <button onClick={editShip}>editar navio</button>
           </div>
           <div id="general-info">
             <div className="cell">

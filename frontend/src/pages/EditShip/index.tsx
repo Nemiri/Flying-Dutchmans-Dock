@@ -4,14 +4,14 @@ import { Container, Form } from "./styles";
 import api from "../../api/api";
 
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 
 interface Dock {
   id: string;
   name: string;
 }
 
-interface ShipForm {
+interface EditShipForm {
   name: string;
   type: string;
   max_speed: number;
@@ -23,10 +23,15 @@ interface ShipForm {
   dock_id: string;
 }
 
-const CreateShip: React.FC = () => {
+interface Request {
+  id: string;
+}
+
+const EditShip: React.FC = () => {
   const { register, handleSubmit } = useForm();
   const [docks, setDocks] = useState<Dock[]>([]);
   const history = useHistory();
+  const params = useParams<Request>();
 
   useEffect(() => {
     api.get("/dock").then((response) => {
@@ -34,9 +39,9 @@ const CreateShip: React.FC = () => {
     });
   }, []);
 
-  const onSubmit = async (data: ShipForm) => {
+  const onSubmit = async (data: EditShipForm) => {
     try {
-      await api.post("/ship", data);
+      await api.put(`/ship/${params.id}`, data);
     } catch (e) {
       console.log(e.message);
     }
@@ -49,17 +54,17 @@ const CreateShip: React.FC = () => {
       <h2>Registrar Embarcação</h2>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-div">
-          <label>Nome da Embarcação</label>
+          <label>Editar Nome da Embarcação</label>
           <input
             {...register("name")}
-            placeholder="Todas as embarcações legais tem nome!"
+            placeholder="Digite o novo nome da embarcação."
           />
         </div>
         <div className="input-div">
-          <label>Tipo da Embarcação</label>
+          <label>Editar Tipo da Embarcação</label>
           <select {...register("type")}>
             <option value="" disabled selected hidden>
-              Tipo da Embarcação
+              Selecione o novo tipo da embarcação
             </option>
             <option value="Exploração">Exploração</option>
             <option value="Cargueiro">Cargueiro</option>
@@ -68,52 +73,52 @@ const CreateShip: React.FC = () => {
           </select>
         </div>
         <div className="input-div">
-          <label>Tamanho da Embarcação (em m²)</label>
+          <label>Editar Tamanho da Embarcação (em m²)</label>
           <input
             {...register("size", { valueAsNumber: true })}
-            placeholder="É melhor ser grande."
+            placeholder="Digite o novo tamanho do navio."
           />
         </div>
         <div className="input-div">
-          <label>Máximo de Tripulantes</label>
+          <label>Editar Máximo de Tripulantes</label>
           <input
             {...register("max_tripulation", { valueAsNumber: true })}
-            placeholder="Lembre-se: não é como coração de mãe"
+            placeholder="Digite o novo máximo de tripulantes."
           />
         </div>
         <div className="input-div">
-          <label>Velocidade Máxima</label>
+          <label>Editar Velocidade Máxima</label>
           <input
             {...register("max_speed", { valueAsNumber: true })}
-            placeholder="Será que alcança o Holandês Voador?"
+            placeholder="Digite a nova velocidade máxima."
           />
         </div>
         <div className="input-div">
-          <label>Nome do Capitão</label>
+          <label>Editar Nome do Capitão</label>
           <input
             {...register("ship_captain")}
-            placeholder="Se for Jack Sparrow é melhor procurar outro lugar"
+            placeholder="Digite o novo nome do capitão."
           />
         </div>
         <div className="input-div">
-          <label>Máximo de Carga (Kg)</label>
+          <label>Editar Máximo de Carga (Kg)</label>
           <input
             {...register("max_cargo", { valueAsNumber: true })}
-            placeholder="Tá carregando o que aí? Pedras?"
+            placeholder="Digite a nova quantidade de carga máxima."
           />
         </div>
         <div className="input-div">
-          <label>Tripulação Atual</label>
+          <label>Editar Tripulação Atual</label>
           <input
             {...register("tripulation", { valueAsNumber: true })}
-            placeholder="Vai fazer festa?"
+            placeholder="Digite a nova quantidade de tripulantes."
           />
         </div>
         <div className="input-div">
-          <label>Doca</label>
+          <label>Editar Doca</label>
           <select {...register("dock_id")}>
             <option value="" disabled selected hidden>
-              Escolha uma Doca
+              Escolha uma nova Doca
             </option>
             {docks.map((dock) => {
               return <option value={dock.id}>{dock.name}</option>;
@@ -121,11 +126,11 @@ const CreateShip: React.FC = () => {
           </select>
         </div>
         <button type="submit" value="submit">
-          Cadastrar
+          Editar
         </button>
       </Form>
     </Container>
   );
 };
 
-export default CreateShip;
+export default EditShip;

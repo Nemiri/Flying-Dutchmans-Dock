@@ -110,14 +110,14 @@ export default class ShipController {
         pool.query(
             `
                 UPDATE ship 
-                SET name = "${request.body.name}", 
+                SET name = '${request.body.name}', 
                 max_speed = ${request.body.max_speed}, 
-                ship_captain = "${request.body.ship_captain}", 
+                ship_captain = '${request.body.ship_captain}', 
                 size = ${request.body.size}, 
-                type = "${request.body.type}", 
+                type = '${request.body.type}', 
                 max_tripulation = ${request.body.max_tripulation}, 
                 max_cargo = ${request.body.max_cargo}
-                WHERE id = "${id}";
+                WHERE id = '${id}';
             `,
             (e, result) => {
                 if (e)

@@ -42,7 +42,7 @@ export default class CargoController {
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
 
-    pool.query(`DELETE FROM cargo WHERE id = "${id}";`, (e) => {
+    pool.query(`DELETE FROM cargo WHERE id = '${id}';`, (e) => {
       if (e)
         return response.status(400).json({
           message: e.message,
@@ -60,10 +60,10 @@ export default class CargoController {
     pool.query(
       `
     UPDATE cargo 
-    SET type = "${request.body.type}",
+    SET type = '${request.body.type}',
     SET weight = ${request.body.weight},
     SET risk_class = ${request.body.risk_class},
-    WHERE id = "${id}";
+    WHERE id = '${id}';
     `,
       (e, result) => {
         if (e)

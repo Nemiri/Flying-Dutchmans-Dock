@@ -50,7 +50,7 @@ export default class DockController {
     public async delete(request: Request, response: Response) {
         const {id} = request.params;
 
-        pool.query(`DELETE FROM dock WHERE id = "${id}";`, (e) => {
+        pool.query(`DELETE FROM dock WHERE id = '${id}';`, (e) => {
             if (e) return response.status(400).json({message: e.message});
         });
     }
@@ -61,10 +61,10 @@ export default class DockController {
         pool.query(
             `
             UPDATE dock
-            SET name = "${request.body.name}",
+            SET name = '${request.body.name}',
             max_ships = ${request.body.max_ships},
             max_ship_size = ${request.body.max_ship_size}
-            WHERE id = "${id}";
+            WHERE id = '${id}';
         `,
             (e, result) => {
                 if (e)

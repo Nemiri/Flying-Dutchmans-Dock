@@ -43,14 +43,22 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
       padding: 8px 16px;
-      background: #c5c7cd;
+      background: #1C64F2;
       border-radius: 8px;
 
-      &:hover {
-        background-color: #1C64F2;
-      }
+      &:disabled {
+      background-color: #dde0ec;
       
-      color: white;
+      &:hover {
+        background-color: #dde0ec;
+      }
+    }
+
+    &:hover {
+      background-color: #133f96;
+    }
+
+    color: white;
   }
 `;
 
@@ -87,5 +95,32 @@ export const Table = styled.table`
   td {
     padding: 24px;
     height: 4vh;
+  }
+  button {
+    height: 2em;
+    width: 6em;
+
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    background: #FF0000;
+    border-radius: 4px;
+    
+    &:disabled {
+      background-color: #dde0ec;
+      
+      &:hover {
+        background-color: #dde0ec;
+      }
+    }
+
+    &:hover {
+      background-color: #B90E0A;
+    }
+
+    color: white;
   }
 `;

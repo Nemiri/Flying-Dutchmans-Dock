@@ -59,7 +59,7 @@ export const Container = styled.div`
       color: white;
     }
   }
-`;
+}`;
 
 export const Table = styled.table`
   width: 100%;

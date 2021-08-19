@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Table } from "./styles";
 import { useHistory } from "react-router-dom";
 import api from "../../api/api";
+import { useCallback } from "react";
 
 interface Dock {
   id: string;
@@ -25,6 +26,18 @@ const Docks: React.FC = () => {
     history.push("/create_dock");
   };
   
+  const deleteDock = useCallback((dock_id: string) => {
+    try{
+      api.delete(`/dock/${dock_id}`).then(() => {
+        api.get<Dock[]>("dock").then((response) => {
+          setDocks(response.data);
+        });
+      })
+    } catch(e) {
+      alert(e.message);
+    }
+  },[])
+
   return (
     <Container>
       <h1>Docas</h1>
@@ -40,16 +53,18 @@ const Docks: React.FC = () => {
               <th>Detalhes da Doca</th>
               <th>Embarcações Ancoradas</th>
               <th>Máximo de Embarcações</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
             {docks.map((dock, index) => {
               return (
-                <tr>
+                <tr key = {dock.id}>
                   <td>{index}</td>
                   <td>{dock.name}</td>
                   <td>{dock.ships}</td>
                   <td>{dock.max_ships}</td>
+                  <td><button onClick={()=>deleteDock(dock.id)}>Excluir</button></td>
                 </tr>
               );
             })}

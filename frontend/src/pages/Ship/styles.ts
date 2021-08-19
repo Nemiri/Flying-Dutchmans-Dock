@@ -42,6 +42,34 @@ export const Container = styled.div`
 
     color: white;
   }
+
+  #delete{
+    height: 2em;
+    width: 10em;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    background: #FF0000;
+    border-radius: 4px;
+    margin-top: 15px;
+    
+    &:disabled {
+      background-color: #dde0ec;
+      
+      &:hover {
+        background-color: #dde0ec;
+      }
+    }
+
+    &:hover {
+      background-color: #B90E0A;
+    }
+
+    color: white;
+  }
 `;
 
 export const ShipAndCargo = styled.div`

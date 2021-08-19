@@ -92,6 +92,14 @@ const Ship: React.FC = () => {
     });
   }, [params.id]);
 
+  const deleteShip = async (ship_id: string) => {
+    alert('Deseja deletar a embarcação?')
+
+    await api.delete(`ship/${ship_id}`)
+
+    history.push("/ships");
+  }
+
   return (
     <Container>
       <h1>{ship.name}</h1>
@@ -102,7 +110,10 @@ const Ship: React.FC = () => {
               <h2>Informações</h2>
               <p>Ancorado na doca {ship.dock_name}</p>
             </div>
-            <button onClick={editShip}>editar navio</button>
+            <div>
+              <button onClick={editShip}>Editar navio</button>
+              <button id="delete" onClick={()=>deleteShip(ship.id)}>Excluir</button>
+            </div>
           </div>
           <div id="general-info">
             <div className="cell">
@@ -137,7 +148,7 @@ const Ship: React.FC = () => {
               <h2>Informações da Carga</h2>
               <p>Classe mais alta de risco: {ship.highest_risk_class}</p>
             </div>
-            <button id='add-cargo' onClick={createCargo}>registrar carga</button>
+            <button id='add-cargo' onClick={createCargo}>Registrar carga</button>
           </div>
           <div id="general-info">
             {cargo.map((single_cargo) => {

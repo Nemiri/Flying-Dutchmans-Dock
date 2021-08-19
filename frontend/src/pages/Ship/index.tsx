@@ -36,6 +36,9 @@ interface Request {
 
 const Ship: React.FC = () => {
   const params = useParams<Request>();
+
+  const [checked, setChecked] = useState(new Array<boolean>(3).fill(false));
+  const [isEnabled, setIsEnabled] = useState(false);
   const [ship, setShip] = useState<SingleShip>({} as SingleShip);
   const [cargo, setCargo] = useState<Cargo[]>([]);
 
@@ -52,6 +55,17 @@ const Ship: React.FC = () => {
       console.log(e);
     }
   };
+
+  const verifyChecked = (position: number) => {  
+    if (checked.includes(false))
+      setIsEnabled(false)
+    else
+      setIsEnabled(true)
+
+    setChecked(checked.map((item, index) => {
+      return index === position ? !item : item
+    }))
+  }
 
   const createCargo = () => {
     history.push(`/create_cargo/${params.id}`);
@@ -86,7 +100,7 @@ const Ship: React.FC = () => {
           <div className="header">
             <div>
               <h2>Informações</h2>
-              <p>{ship.dock_name}</p>
+              <p>Ancorado na doca {ship.dock_name}</p>
             </div>
             <button onClick={editShip}>editar navio</button>
           </div>
@@ -156,22 +170,22 @@ const Ship: React.FC = () => {
                 <h2>Certificar</h2>
                 <p>Para a embarcação ser certificada, confirme a checklist.</p>
               </div>
-              <button onClick={handleSubmit}>Certificar</button>
+              {isEnabled ? <button onClick={handleSubmit}>Certificar</button> : <button onClick={handleSubmit} disabled>Certificar</button>}
             </div>
             <div id="checklist-container">
               <div>
                 <label className="checklist">
-                  <input type="checkbox" className="checkbox" />
+                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(0)}/>
                   <p>Tem alguém armado?</p>
                 </label>
                 <hr />
                 <label className="checklist">
-                  <input type="checkbox" className="checkbox" />
+                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(1)}/>
                   <p>Algum tripulante tem TikTok instalado?</p>
                 </label>
                 <hr />
                 <label className="checklist">
-                  <input type="checkbox" className="checkbox" />
+                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(2)}/>
                   <p>Certeza que ninguém tá armado?</p>
                 </label>
               </div>

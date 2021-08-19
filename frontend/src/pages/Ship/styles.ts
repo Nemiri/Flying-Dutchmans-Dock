@@ -25,13 +25,21 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     padding: 8px 16px;
-    background: #c5c7cd;
+    background: #1C64F2;
     border-radius: 4px;
+    
+    &:disabled {
+      background-color: #dde0ec;
+      
+      &:hover {
+        background-color: #dde0ec;
+      }
+    }
 
     &:hover {
-      background-color: #1C64F2;
+      background-color: #133f96;
     }
-    
+
     color: white;
   }
 `;

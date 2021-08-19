@@ -110,3 +110,6 @@ dist
 /.idea/Flying-Dutchmans-Dock.iml
 /.idea/modules.xml
 /.idea/vcs.xml
+.idea/inspectionProfiles/Project_Default.xml
+backend/yarn.lock
+backend/yarn.lock

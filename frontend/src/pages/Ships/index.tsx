@@ -23,8 +23,6 @@ const Docks: React.FC = () => {
 
   useEffect(() => {
     api.get<Ship[]>("ship").then((response) => {
-      console.dir(response.data);
-
       setShips(
         response.data.map((ship) => {
           if (!ship.arrival_time) return ship;
@@ -73,7 +71,7 @@ const Docks: React.FC = () => {
           <tbody>
             {ships.map((ship, index) => {
               return (
-                <tr onClick={() => seeShip(ship.id)}>
+                <tr onClick={() => seeShip(ship.id)} key={ship.id}>
                   <td>{index}</td>
                   <td>
                     {ship.name}

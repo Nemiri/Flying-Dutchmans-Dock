@@ -24,7 +24,7 @@ export const Container = styled.div`
     height: 100%;
     overflow: scroll;
   }
-  
+
   #header {
     width: 100%;
     display: flex;
@@ -32,9 +32,8 @@ export const Container = styled.div`
     justify-content: space-between;
 
     button {
-      position: relative;
-      height: 2.5rem;
-      width: 16rem;
+      height: 2.5em;
+      width: 14em;
 
       border: none;
       display: flex;
@@ -42,20 +41,28 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
       padding: 8px 16px;
-      background: #c5c7cd;
-      border-radius: 8px;
+      background: #1c64f2;
+      border-radius: 4px;
+
+      &:disabled {
+        background-color: #dde0ec;
+
+        &:hover {
+          background-color: #dde0ec;
+        }
+      }
 
       &:hover {
-        background-color: #1C64F2;
+        background-color: #133f96;
       }
-      
+
       color: white;
+    }
   }
 `;
 
 export const Table = styled.table`
   width: 100%;
-  height: 100%;
   background-color: white;
 
   text-align: left;

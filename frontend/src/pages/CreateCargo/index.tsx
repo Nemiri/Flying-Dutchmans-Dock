@@ -32,7 +32,7 @@ const CreateShip: React.FC = () => {
             console.log(e.message);
         }
 
-        history.push("/ships");
+        history.push(`/ship/${params.ship_id}`);
     };
 
     return (

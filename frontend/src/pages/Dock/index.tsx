@@ -32,28 +32,30 @@ const Docks: React.FC = () => {
       <h2>Todos as Docas em funcionamento</h2>
         <button onClick={createDock}>Registrar Doca</button>
       </div>
-      <Table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Detalhes da Doca</th>
-            <th>Embarcações Ancoradas</th>
-            <th>Máximo de Embarcações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {docks.map((dock, index) => {
-            return (
-              <tr>
-                <td>{index}</td>
-                <td>{dock.name}</td>
-                <td>{dock.ships}</td>
-                <td>{dock.max_ships}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <div id="scroller">
+        <Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Detalhes da Doca</th>
+              <th>Embarcações Ancoradas</th>
+              <th>Máximo de Embarcações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {docks.map((dock, index) => {
+              return (
+                <tr>
+                  <td>{index}</td>
+                  <td>{dock.name}</td>
+                  <td>{dock.ships}</td>
+                  <td>{dock.max_ships}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
     </Container>
   );
 };

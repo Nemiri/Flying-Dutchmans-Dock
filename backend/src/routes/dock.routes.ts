@@ -6,7 +6,6 @@ const dockRouter = Router();
 
 dockRouter.post("/", dockController.create);
 dockRouter.get("/", dockController.index);
-dockRouter.get("/:id", dockController.findOne);
 dockRouter.delete("/:id", dockController.delete);
 dockRouter.put("/:id", dockController.update);
 

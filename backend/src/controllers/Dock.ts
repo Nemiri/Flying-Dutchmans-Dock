@@ -37,21 +37,13 @@ export default class DockController {
         return response.status(200);
     }
 
-    public async findOne(request: Request, response: Response) {
-        const {id} = request.params;
-
-        pool.query(`SELECT * FROM dock WHERE id = ${id};`, async (e, result) => {
-            if (e) return response.status(400).json({message: e.message});
-
-            return response.json(result);
-        });
-    }
-
     public async delete(request: Request, response: Response) {
         const {id} = request.params;
 
         pool.query(`DELETE FROM dock WHERE id = '${id}';`, (e) => {
-            if (e) return response.status(400).json({message: e.message});
+            if (e) return response.status(400).json({ message: e.message });
+            
+            return response.status(200).json({ message: 'Doca deletada' });
         });
     }
 

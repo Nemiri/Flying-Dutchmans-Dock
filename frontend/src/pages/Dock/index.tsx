@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Container, Table } from "./styles";
 import { useHistory } from "react-router-dom";
 import api from "../../api/api";
-import { useCallback } from "react";
 
 interface Dock {
   id: string;
@@ -16,27 +15,25 @@ const Docks: React.FC = () => {
   const history = useHistory();
   const [docks, setDocks] = useState<Dock[]>([]);
 
+  const createDock = () => {
+    history.push("/create_dock");
+  };
+
   useEffect(() => {
     api.get<Dock[]>("dock").then((response) => {
       setDocks(response.data);
     });
   }, []);
-
-  const createDock = () => {
-    history.push("/create_dock");
-  };
   
-  const deleteDock = useCallback((dock_id: string) => {
-    try{
-      api.delete(`/dock/${dock_id}`).then(() => {
-        api.get<Dock[]>("dock").then((response) => {
-          setDocks(response.data);
-        });
-      })
-    } catch(e) {
-      alert(e.message);
-    }
-  },[])
+  const deleteDock = async (dock_id: string) => {
+    alert('Deseja deletar a doca?')
+
+    await api.delete(`dock/${dock_id}`)
+
+    api.get('dock').then(response => {
+      setDocks(response.data)
+    })
+  }
 
   return (
     <Container>

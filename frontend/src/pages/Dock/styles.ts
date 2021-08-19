@@ -96,19 +96,20 @@ export const Table = styled.table`
     padding: 24px;
     height: 4vh;
   }
-  button {
+
+  #delete {
     height: 2em;
     width: 6em;
-
+    margin-top: 3px;
     border: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 8px 16px;
-    background: #FF0000;
+    background: #B33A3A;
     border-radius: 4px;
-    
+
     &:disabled {
       background-color: #dde0ec;
       
@@ -119,6 +120,34 @@ export const Table = styled.table`
 
     &:hover {
       background-color: #B90E0A;
+    }
+
+    color: white;
+  }
+
+  button {
+    height: 2em;
+    width: 6em;
+
+    border: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 16px;
+      background: #1C64F2;
+      border-radius: 4px;
+
+      &:disabled {
+      background-color: #dde0ec;
+      
+      &:hover {
+        background-color: #dde0ec;
+      }
+    }
+
+    &:hover {
+      background-color: #133f96;
     }
 
     color: white;

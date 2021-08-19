@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "./styles";
 import { useHistory } from "react-router-dom";
+import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
+import Button from '@material-ui/core/Button';
+
 import api from "../../api/api";
 
 interface Dock {
@@ -24,7 +28,7 @@ const Docks: React.FC = () => {
       setDocks(response.data);
     });
   }, []);
-  
+
   const deleteDock = async (dock_id: string) => {
     alert('Deseja deletar a doca?')
 
@@ -33,6 +37,10 @@ const Docks: React.FC = () => {
     api.get('dock').then(response => {
       setDocks(response.data)
     })
+  }
+  
+  const updateDock = (dock_id: string) => {
+    history.push(`/update_dock/${dock_id}`);
   }
 
   return (
@@ -61,7 +69,24 @@ const Docks: React.FC = () => {
                   <td>{dock.name}</td>
                   <td>{dock.ships}</td>
                   <td>{dock.max_ships}</td>
-                  <td><button onClick={()=>deleteDock(dock.id)}>Excluir</button></td>
+                  <td>
+                      <div id="menu">
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        id = "update"
+                        startIcon={<CreateIcon />}
+                        onClick={()=>updateDock(dock.id)}
+                        > Update </Button>
+                        <Button
+                        variant="contained"
+                        color="secondary"
+                        id = "delete"
+                        startIcon={<DeleteIcon />}
+                        onClick={()=>deleteDock(dock.id)}
+                        > Delete </Button>
+                      </div>
+                    </td>
                 </tr>
               );
             })}

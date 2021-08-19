@@ -50,6 +50,9 @@ const Ship: React.FC = () => {
         dock_id: ship.dock_id,
         ship_id: ship.id,
       });
+
+      await api.put(`announcement/${params.id}`)
+
       history.push("/ships");
     } catch (e) {
       console.log(e);

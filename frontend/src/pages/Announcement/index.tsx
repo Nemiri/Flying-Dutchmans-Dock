@@ -1,57 +1,81 @@
-import React, { useEffect, useState } from "react";
-import { Container, Table } from "./styles";
-import { useHistory } from "react-router-dom";
-import api from "../../api/api";
+import { format, parseISO } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import api from '../../api/api';
+
+import {Container, Status, StatusContainer, Table} from './styles'
 
 interface Announcement {
-  id: string;
-  dock_id: string;
-  ship_id: number;
-  arrival_time: number;
-  departure_time: number;
+  ship_name: string;
+  ship_captain: string;
+  arrival_time: string;
+  departure_time: string;
 }
 
 const Announcements: React.FC = () => {
-  const history = useHistory();
-  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([])
 
-  const createAnnouncement = () => {
-    history.push("/create_announcement");
-  };
+  useEffect(() => {
+    api.get('announcement').then((response) => {
+      setAnnouncements(response.data.map((element: Announcement) => {
+        if (!element.arrival_time) return {
+            ...element,
+            departure_time: format(parseISO(element.departure_time), "dd/MM/yyyy")
+        }
+        
+        if (!element.departure_time) return {
+          ...element,
+          arrival_time: format(parseISO(element.arrival_time), "dd/MM/yyyy"),
+        }
+        
+        return {
+          ...element,
+          arrival_time: format(parseISO(element.arrival_time), "dd/MM/yyyy"),
+          departure_time: format(parseISO(element.departure_time), "dd/MM/yyyy")
+        }
+      }))
+    })
+  })
 
   return (
     <Container>
-      <h1>Docas</h1>
-      <div id = "containerHeader">
-      <h2>Todos as Docas em funcionamento</h2>
-        <button onClick={createAnnouncement}>Novo Anúncio</button>
-      </div>
+      <h2>Anúncios</h2>
+      <StatusContainer>
+        <Status>
+          <p>Total</p>
+          <h1>24</h1>
+        </Status>
+        <Status>
+          <p>Partindo</p>
+          <h1>24</h1>
+        </Status>
+        <Status>
+          <p>Ancorado</p>
+          <h1>24</h1>
+        </Status>
+        <Status>
+          <p>Em Rota</p>
+          <h1>24</h1>
+        </Status>
+      </StatusContainer>
       <Table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Detalhes da Doca</th>
-            <th>Embarcações Ancoradas</th>
-            <th>Máximo de Embarcações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {announcements.map((announcement, index) => {
-            return (
-              <tr>
-                <td>{index}</td>
-                <td>{announcement.dock_id}</td>
-                <td>{announcement.ship_id}</td>
-                <td>{announcement.arrival_time}</td>
-                <td>{announcement.departure_time}</td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <h2>Situação dos Navios</h2>
+        {announcements.map(announcement => {
+          return (
+            <>
+              <div id="data">
+                <div>
+                  {announcement.arrival_time ? <h3>Ancorado</h3> : <h3>Em Rota</h3>}
+                  <p>{announcement.ship_name}</p>
+                </div>
+                {announcement.departure_time ? <p>Partirá em {announcement.departure_time}</p> : <p>Ancorou em {announcement.arrival_time}</p>}
+              </div>
+              <hr/>
+            </>
+          )
+        })}
       </Table>
-          <button>Deletar Anúncio</button>
     </Container>
-  );
-};
+  )
+}
 
-export default Announcements;
+export default Announcements

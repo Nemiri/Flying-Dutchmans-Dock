@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: start;
 
   h1 {
@@ -41,38 +42,39 @@ export const Container = styled.div`
   }
 `;
 
-export const Table = styled.table`
+export const StatusContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  background-color: white;
+  height: 15vh;
+`
 
-  text-align: left;
-  font-weight: normal;
+export const Status = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 
   border: solid #dde0ec 1px;
-  border-collapse: collapse;
-  border-radius: 8px;
+  border-radius: 4px;
+  width: 24%;
+  height: 100%;
+  background-color: white;
+`
 
-  tbody {
-    max-height: 72vh;
-    overflow-y: scroll;
-  }
+export const Table = styled.div`
+  background-color: white;
+  border: solid #dde0ec 1px;
+  width: 100%;
+  padding: 32px;
+  height: 60vh;
+  overflow-y: scroll;
 
-  th {
-    font-weight: normal;
-    color: #9fa2b4;
-    padding: 24px 24px 0 24px;
-    height: 2vh;
-    border-bottom: 2px solid var(--pw-background);
+  #data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
-
-  tr {
-    &:hover {
-      background-color: var(--pw-background);
-    }
-  }
-
-  td {
-    padding: 24px;
-    height: 4vh;
-  }
-`;
+`

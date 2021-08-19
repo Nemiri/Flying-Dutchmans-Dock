@@ -217,57 +217,6 @@ export default class Seeder {
             certification: '2021-01-13 11:33:10'
         }
 
-        //ROUTES FOR SHIPS ON DOCK ALPHA
-        const routeMalcolm = {
-            id: uuidv4(),
-            ship_id: shipMalcolm.id,
-            distance: 4550,
-            source: 'Porto Velho, Brasil',
-            destination: 'Orlando, USA'
-        }
-
-        const routeBismark = {
-            id: uuidv4(),
-            ship_id: shipBismark.id,
-            distance: 8908,
-            source: 'Hamburgo, Alemanha',
-            destination: 'Hong Kong, China'
-        }
-
-        //ROUTES FOR SHIPS ON DOCK BETA
-        const routeSalazar = {
-            id: uuidv4(),
-            ship_id: shipSalazar.id,
-            distance: 11805,
-            source: 'Lisboa, Portugal',
-            destination: 'San Antonio, Chile'
-        }
-
-        const routeTchaikovsky = {
-            id: uuidv4(),
-            ship_id: shipTchaikovsky.id,
-            distance: 9450,
-            source: 'São Petersburgo, Rússia',
-            destination: 'Recife, Brasil'
-        }
-
-        //ROUTES FOR SHIPS ON DOCK SIGMA
-        const routeSantaMaria = {
-            id: uuidv4(),
-            ship_id: shipSantaMaria.id,
-            distance: 2922,
-            source: 'Porto Velho, Brasil',
-            destination: 'Altamira, Mexico'
-        }
-
-        const routeADP = {
-            id: uuidv4(),
-            ship_id: shipMalcolm.id,
-            distance: 5364,
-            source: 'Recife, Brasil',
-            destination: 'Tríangulo das Bermudas, Porto Rico'
-        }
-
         await pool.query(`
         INSERT INTO dock
         (id, name, max_ships, max_ship_size)
@@ -314,18 +263,6 @@ export default class Seeder {
         `);
 
         await pool.query(`
-        INSERT INTO announcement
-        (id, dock_id, ship_id, arrival_time)
-        VALUES
-        ('${announcementMalcolm.id}', '${shipMalcolm.dock_id}', '${shipMalcolm.id}', '${announcementMalcolm.arrival_time}'),
-        ('${announcementBismark.id}', '${shipBismark.dock_id}', '${shipBismark.id}', '${announcementBismark.arrival_time}'),
-        ('${announcementSalazar.id}', '${shipSalazar.dock_id}', '${shipSalazar.id}', '${announcementSalazar.arrival_time}'),
-        ('${announcementTchaikovsky.id}', '${shipTchaikovsky.dock_id}', '${shipTchaikovsky.id}', '${announcementTchaikovsky.arrival_time}'),
-        ('${announcementSantaMaria.id}', '${shipSantaMaria.dock_id}', '${shipSantaMaria.id}', '${announcementSantaMaria.arrival_time}'),
-        ('${announcementADP.id}', '${shipADP.dock_id}', '${shipADP.id}', '${announcementADP.arrival_time}');
-        `);
-
-        await pool.query(`
         INSERT INTO allowed_ships
         (id, ship_id, certification)
         VALUES
@@ -334,15 +271,15 @@ export default class Seeder {
         `);
 
         await pool.query(`
-        INSERT INTO routes
-        (id, ship_id, distance, source, destination)
+        INSERT INTO announcement
+        (id, ship_id, arrival_time, departure_time)
         VALUES
-        ('${routeMalcolm.id}', '${routeMalcolm.ship_id}', ${routeMalcolm.distance}, '${routeMalcolm.source}', '${routeMalcolm.destination}'),
-        ('${routeBismark.id}', '${routeBismark.ship_id}', ${routeBismark.distance}, '${routeBismark.source}', '${routeBismark.destination}'),
-        ('${routeSalazar.id}', '${routeSalazar.ship_id}', ${routeSalazar.distance}, '${routeSalazar.source}', '${routeSalazar.destination}'),
-        ('${routeTchaikovsky.id}', '${routeTchaikovsky.ship_id}', ${routeTchaikovsky.distance}, '${routeTchaikovsky.source}', '${routeTchaikovsky.destination}'),
-        ('${routeSantaMaria.id}', '${routeSantaMaria.ship_id}', ${routeSantaMaria.distance}, '${routeSantaMaria.source}', '${routeSantaMaria.destination}'),
-        ('${routeADP.id}', '${routeADP.ship_id}', ${routeADP.distance}, '${routeADP.source}', '${routeADP.destination}');
+        ('${announcementMalcolm.id}', '${shipMalcolm.id}', '${announcementMalcolm.arrival_time}', NOW() + (random() * (NOW() + '3 days' - NOW())) + '21 days'),
+        ('${announcementBismark.id}', '${shipBismark.id}', '${announcementBismark.arrival_time}', null),
+        ('${announcementSalazar.id}', '${shipSalazar.id}', '${announcementSalazar.arrival_time}', NOW() + (random() * (NOW() + '3 days' - NOW())) + '21 days'),
+        ('${announcementTchaikovsky.id}', '${shipTchaikovsky.id}', '${announcementTchaikovsky.arrival_time}', null),
+        ('${announcementSantaMaria.id}', '${shipSantaMaria.id}', '${announcementSantaMaria.arrival_time}', null),
+        ('${announcementADP.id}', '${shipADP.id}', '${announcementADP.arrival_time}', null);
         `);
 
         return response.status(200).json({message: 'Banco semeado com sucesso'})

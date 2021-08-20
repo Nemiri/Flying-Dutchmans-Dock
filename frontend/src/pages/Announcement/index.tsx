@@ -56,7 +56,7 @@ const Announcements: React.FC = () => {
 
   return (
     <Container>
-      <h2>Anúncios</h2>
+      <h1>Anúncios</h1>
       <StatusContainer>
         <Status>
           <p>Total</p>
@@ -86,7 +86,7 @@ const Announcements: React.FC = () => {
             <>
               <div id="data">
                 <div>
-                  {announcement.departure_time ? <h3>Certificado</h3> : <h3>Ancorado</h3>}
+                  {announcement.departure_time ? <h3 style={{ color: 'limegreen'}}>Certificado</h3> : <h3>Ancorado</h3>}
                   <p>{announcement.ship_name}</p>
                 </div>
                 {announcement.departure_time ? <p>Partirá em {announcement.departure_time}</p> : <p>Ancorou em {announcement.arrival_time}</p>}

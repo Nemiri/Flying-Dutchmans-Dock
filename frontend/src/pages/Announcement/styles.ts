@@ -12,10 +12,6 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: start;
 
-  h1 {
-    margin-bottom: 2rem;
-  }
-
   h2 {
     margin-bottom: 1rem;
   }
@@ -47,18 +43,18 @@ export const StatusContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 15vh;
+  height: 18vh;
 `
 
 export const Status = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 2rem;
 
   border: solid #dde0ec 1px;
   border-radius: 4px;
-  width: 24%;
+  width: 18%;
   height: 100%;
   background-color: white;
 `
@@ -69,6 +65,7 @@ export const Table = styled.div`
   width: 100%;
   padding: 32px;
   height: 60vh;
+
   overflow-y: scroll;
 
   #data {
@@ -76,5 +73,6 @@ export const Table = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 8px 0;
   }
 `

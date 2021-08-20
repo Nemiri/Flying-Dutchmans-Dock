@@ -18,7 +18,19 @@ Aponte para a pasta do backend para executar:
 npm i
 ```
 
-após isso, você terá todas as dependências do backend instaladas, digite o comando abaixo para iniciar o servidor:
+após isso, você terá todas as dependências do backend instaladas, agora você deve criar um arquivo .env dentro da pasta do backend.
+
+.env.example
+```bash
+API_URL=https://localhost:3333
+DB_USER=root
+DB_PASSWORD=
+DB_PORT=3306
+DB_HOST=localhost
+DB_NAME=fdd
+```
+
+Agora execute:
 
 ```bash
 npm run dev

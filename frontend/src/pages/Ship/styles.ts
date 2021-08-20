@@ -112,6 +112,10 @@ export const InfoContainer = styled.div`
     overflow: scroll;
     max-height: 100%;
 
+    #cells {
+      width: 100%;
+    }
+
     .cell {
       margin: 8px 0;
       width: 100%;

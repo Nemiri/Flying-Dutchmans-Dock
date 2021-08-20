@@ -25,6 +25,7 @@ interface SingleShip {
 }
 
 interface Cargo {
+  id: string;
   type: string;
   risk_class: number;
   weight: number;
@@ -93,6 +94,8 @@ const Ship: React.FC = () => {
     });
   }, [params.id]);
 
+  console.log(cargo)
+
   const deleteShip = async (ship_id: string) => {
     alert('Deseja deletar a embarcação?')
 
@@ -154,7 +157,7 @@ const Ship: React.FC = () => {
           <div id="general-info">
             {cargo.map((single_cargo) => {
               return (
-                <>
+                <div key={single_cargo.id} id="cells">
                   <div className="cell">
                     <p>Tipo da Carga</p>
                     <h3>{single_cargo.type}</h3>
@@ -168,7 +171,7 @@ const Ship: React.FC = () => {
                     <h3>{single_cargo.risk_class}</h3>
                     <hr />
                   </div>
-                </>
+                </div>
               );
             })}
           </div>

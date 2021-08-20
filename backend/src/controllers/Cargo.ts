@@ -56,7 +56,7 @@ export default class CargoController {
     const { ship_id } = request.params;
 
     pool.query(
-      `SELECT type, weight, risk_class FROM cargo WHERE ship_id = '${ship_id}'`,
+      `SELECT * FROM cargo WHERE ship_id = '${ship_id}'`,
       (e, result) => {
         if (e) return response.status(400).json({ message: e.message });
 

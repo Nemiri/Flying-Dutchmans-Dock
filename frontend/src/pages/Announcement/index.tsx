@@ -5,6 +5,7 @@ import api from '../../api/api';
 import {Container, Status, StatusContainer, Table} from './styles'
 
 interface Announcement {
+  id: string;
   ship_name: string;
   ship_captain: string;
   arrival_time: string;
@@ -83,7 +84,7 @@ const Announcements: React.FC = () => {
         <h2>Situação dos Navios</h2>
         {announcements.map(announcement => {
           return (
-            <>
+            <div key={announcement.id}>
               <div id="data">
                 <div>
                   {announcement.departure_time ? <h3 style={{ color: 'limegreen'}}>Certificado</h3> : <h3>Ancorado</h3>}
@@ -92,7 +93,7 @@ const Announcements: React.FC = () => {
                 {announcement.departure_time ? <p>Partirá em {announcement.departure_time}</p> : <p>Ancorou em {announcement.arrival_time}</p>}
               </div>
               <hr/>
-            </>
+            </div>
           )
         })}
       </Table>

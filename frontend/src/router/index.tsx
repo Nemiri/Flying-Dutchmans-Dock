@@ -10,7 +10,7 @@ import Menu from "../components/Navbar";
 import CreateDock from "../pages/CreateDock";
 import EditShip from "../pages/EditShip";
 import Announcements from "../pages/Announcement";
-import UpdateDock from "../pages/UpdateDock";
+import EditDock from "../pages/EditDock";
 
 const Routes: React.FC = () => (
   <BrowserRouter>
@@ -22,8 +22,8 @@ const Routes: React.FC = () => (
         <Route path="/edit_ship/:ship_id" component={EditShip}/>
         <Route path="/create_cargo/:ship_id" component={CreateCargo} />
       <Route path="/docks/" component={Docks} />
-      <Route path="/create_dock" component={CreateDock} />
-      <Route path="/update_dock" component={UpdateDock} />
+        <Route path="/create_dock" component={CreateDock} />
+        <Route path="/edit_dock/:dock_id" component={EditDock} />
       <Route path="/announcements" component={Announcements} />
     </Switch>
   </BrowserRouter>

@@ -36,8 +36,8 @@ const Docks: React.FC = () => {
     })
   }
   
-  const updateDock = (dock_id: string) => {
-    history.push(`/update_dock/${dock_id}`);
+  const editDock = (dock_id: string) => {
+    history.push(`/edit_dock/${dock_id}`);
   }
 
   return (
@@ -68,7 +68,7 @@ const Docks: React.FC = () => {
                   <td>{dock.max_ships}</td>
                   <td>
                     <div id="menu">
-                      <button id="edit" onClick={()=>updateDock(dock.id)}>Editar</button>
+                      <button id="edit" onClick={()=>editDock(dock.id)}>Editar</button>
                       <button id="delete" onClick={()=>deleteDock(dock.id)}>Delete</button>
                     </div>
                   </td>

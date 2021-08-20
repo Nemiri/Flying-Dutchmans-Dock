@@ -11,7 +11,7 @@ export default class AnnouncementController {
         INSERT INTO announcement (id, ship_id, arrival_time, departure_time)
         VALUES ('${id}', 
         '${request.body.ship_id}', 
-        '${request.body.arrival_time}',
+        'now()',
         null
       );`,
       (e, result) => {

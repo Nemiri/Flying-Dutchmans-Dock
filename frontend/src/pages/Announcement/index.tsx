@@ -11,6 +11,18 @@ interface Announcement {
   departure_time: string;
 }
 
+interface Ship {
+  id: string;
+  name: string;
+  tripulation: number;
+  type: string;
+  ship_captain: string;
+  dock_name: string;
+  cargo: number;
+  isCertificated?: string;
+  certification_time?: string;
+}
+
 const Announcements: React.FC = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
 
@@ -42,19 +54,19 @@ const Announcements: React.FC = () => {
       <StatusContainer>
         <Status>
           <p>Total</p>
-          <h1>24</h1>
+          <h1>{announcements.length}</h1>
         </Status>
         <Status>
           <p>Partindo</p>
-          <h1>24</h1>
+          <h1>{announcements.filter(announcement => announcement.departure_time !== null).length}</h1>
         </Status>
         <Status>
           <p>Ancorado</p>
-          <h1>24</h1>
+          <h1>{announcements.filter(announcement => announcement.departure_time === null).length}</h1>
         </Status>
         <Status>
-          <p>Em Rota</p>
-          <h1>24</h1>
+          <p>Carga total</p>
+          <h1>{} Kg</h1>
         </Status>
       </StatusContainer>
       <Table>
@@ -64,7 +76,7 @@ const Announcements: React.FC = () => {
             <>
               <div id="data">
                 <div>
-                  {announcement.arrival_time ? <h3>Ancorado</h3> : <h3>Em Rota</h3>}
+                  {announcement.departure_time ? <h3>Certificado</h3> : <h3>Ancorado</h3>}
                   <p>{announcement.ship_name}</p>
                 </div>
                 {announcement.departure_time ? <p>Partirá em {announcement.departure_time}</p> : <p>Ancorou em {announcement.arrival_time}</p>}

@@ -10,6 +10,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+
+  p {
+    padding: 0 16px;
+  }
   
   h2 {
     margin-bottom: 24px;
@@ -38,7 +42,7 @@ export const Form = styled.form`
     align-items: center;
     padding: 8px 16px;
     background: #c5c7cd;
-    border-radius: 12px;
+    border-radius: 4px;
 
     &:hover {
       background-color: #1c64f2;

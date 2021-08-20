@@ -32,19 +32,18 @@ export const Container = styled.div`
     margin-bottom: 1rem;
   }
 
-    button {
-      position: relative;
-      height: 2.5rem;
-      width: 16rem;
+  button {
+    height: 2em;
+    width: 12em;
 
-      border: none;
+    border: none;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       padding: 8px 16px;
       background: #1C64F2;
-      border-radius: 8px;
+      border-radius: 4px;
 
       &:disabled {
       background-color: #dde0ec;
@@ -97,57 +96,48 @@ export const Table = styled.table`
     height: 4vh;
   }
 
-  #delete {
+  #menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #edit {
+    position: relative;
     height: 2em;
-    width: 6em;
-    margin-top: 3px;
+    width: 6.2em;
+    margin-right: 1rem;
+
     border: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 8px 16px;
-    background: #B33A3A;
+    background: #1C64F2;
     border-radius: 4px;
 
-    &:disabled {
-      background-color: #dde0ec;
-      
-      &:hover {
-        background-color: #dde0ec;
-      }
-    }
-
     &:hover {
-      background-color: #B90E0A;
+      background-color: #133f96;
     }
 
     color: white;
   }
 
-  button {
+  #delete {
     height: 2em;
     width: 6em;
-
     border: none;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 16px;
-      background: #1C64F2;
-      border-radius: 4px;
-
-      &:disabled {
-      background-color: #dde0ec;
-      
-      &:hover {
-        background-color: #dde0ec;
-      }
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    background: #B90E0A;
+    border-radius: 4px;
 
     &:hover {
-      background-color: #133f96;
+      background-color: #B33A3A;
     }
 
     color: white;

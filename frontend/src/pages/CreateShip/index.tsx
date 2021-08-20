@@ -36,8 +36,12 @@ const CreateShip: React.FC = () => {
 
   const onSubmit = async (data: ShipForm) => {
     try {
-      await api.post("/ship", data);
-    } catch (e) {
+      const ship = await api.post("/ship", data);
+
+      await api.post('announcement', {
+        ship_id: ship.data.id,
+      })
+    } catch (e: any) {
       console.log(e.message);
     }
 
@@ -120,9 +124,12 @@ const CreateShip: React.FC = () => {
             })}
           </select>
         </div>
-        <button type="submit" value="submit">
-          Cadastrar
-        </button>
+        <div>
+          <button type="submit" value="submit">
+            Cadastrar
+          </button>
+          <p>*A embarcação será registrada como ancorada na data de hoje</p>
+        </div>
       </Form>
     </Container>
   );

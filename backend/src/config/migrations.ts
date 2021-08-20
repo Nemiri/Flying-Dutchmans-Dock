@@ -18,10 +18,6 @@ export default async function runMigrations() {
   );
 
   await pool.query(
-    "CREATE TABLE IF NOT EXISTS routes (id VARCHAR(100) NOT NULL, ship_id VARCHAR(100) NOT NULL, distance FLOAT NOT NULL, source VARCHAR(100) NOT NULL, destination VARCHAR(100) NOT NULL, FOREIGN KEY (ship_id) REFERENCES ship(id) ON DELETE CASCADE, PRIMARY KEY (id));"
-  );
-
-  await pool.query(
     "CREATE TABLE IF NOT EXISTS allowed_ships (id VARCHAR(100) NOT NULL, ship_id VARCHAR(100) NOT NULL, certification TIMESTAMP NOT NULL DEFAULT NOW(), FOREIGN KEY (ship_id) REFERENCES ship(id) ON DELETE CASCADE, PRIMARY KEY (id));"
   );
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import api from "../../api/api";
+import axios from "axios"
 
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { Container, InfoContainer, Certificate, ShipAndCargo } from "./styles";
@@ -46,17 +47,14 @@ const Ship: React.FC = () => {
   const history = useHistory();
 
   const handleSubmit = () => {
-    try {
+    axios.all([]).then(axios.spread(() => {
       api.post("/allowed_ships", {
         dock_id: ship.dock_id,
         ship_id: ship.id,
-      }).then(() => {
-        api.put(`announcement/${params.id}`)
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
+      })
+      api.put(`announcement/${params.id}`)
+    }))
+  }
 
   const verifyChecked = (position: number, checked: Array<boolean>) => {
     checked[position] = !checked[position]

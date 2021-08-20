@@ -42,11 +42,11 @@ const EditShip: React.FC = () => {
   const onSubmit = async (data: EditShipForm) => {
     try {
       await api.put(`/ship/${params.ship_id}`, data);
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.message);
     }
 
-    history.push(`/ships/${params.ship_id}`);
+    history.push(`/ship/${params.ship_id}`);
   };
 
   return (

@@ -45,16 +45,14 @@ const Ship: React.FC = () => {
 
   const history = useHistory();
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
-      await api.post("/allowed_ships", {
+      api.post("/allowed_ships", {
         dock_id: ship.dock_id,
         ship_id: ship.id,
+      }).then(() => {
+        api.put(`announcement/${params.id}`)
       });
-
-      await api.put(`announcement/${params.id}`)
-
-      history.push("/ships");
     } catch (e) {
       console.log(e);
     }

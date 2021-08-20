@@ -113,3 +113,6 @@ dist
 .idea/inspectionProfiles/Project_Default.xml
 backend/yarn.lock
 backend/yarn.lock
+backend/yarn.lock
+frontend/package-lock.json
+frontend/yarn.lock

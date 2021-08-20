@@ -26,6 +26,32 @@ export default class CargoController {
     );
   }
 
+  public async getIncoming(request: Request, response: Response) {
+    pool.query(`
+      select SUM(c.weight) as "total"
+      from cargo c, ship s
+      where c.ship_id = s.id;`, (e, result) => {
+      if(e) return response.status(400).json({
+        message: e.message,
+      });
+
+      return response.status(200).json(result.rows[0]);
+    })
+  }
+
+  public async getOutcoming(request: Request, response: Response) {
+    pool.query(`
+      select SUM(c.weight) as "total"
+      from cargo c, ship s, announcement a
+      where c.ship_id = s.id and a.ship_id = s.id and a.departure_time is not null;`, (e, result) => {
+      if(e) return response.status(400).json({
+        message: e.message,
+      });
+
+      return response.status(200).json(result.rows[0]);
+    })
+  }
+
   public async index(request: Request, response: Response) {
     const { ship_id } = request.params;
 

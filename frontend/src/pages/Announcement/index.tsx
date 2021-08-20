@@ -11,22 +11,28 @@ interface Announcement {
   departure_time: string;
 }
 
-interface Ship {
-  id: string;
-  name: string;
-  tripulation: number;
-  type: string;
-  ship_captain: string;
-  dock_name: string;
-  cargo: number;
-  isCertificated?: string;
-  certification_time?: string;
+interface IncomingCargo {
+  total: number;
+}
+
+interface OutcomingCargo {
+  total: number;
 }
 
 const Announcements: React.FC = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
+  const [incoming, setIncoming] = useState<IncomingCargo>({ total: 0 })
+  const [outcoming, setOutcoming] = useState<OutcomingCargo>({total: 0})
 
   useEffect(() => {
+    api.get('cargo/get/incoming').then(response => {
+      setIncoming(response.data)
+    })
+
+    api.get('cargo/get/outcoming').then(response => {
+      setOutcoming(response.data)
+    })
+
     api.get('announcement').then((response) => {
       setAnnouncements(response.data.map((element: Announcement) => {
         if (!element.arrival_time) return {
@@ -46,7 +52,7 @@ const Announcements: React.FC = () => {
         }
       }))
     })
-  })
+  }, [])
 
   return (
     <Container>
@@ -65,8 +71,12 @@ const Announcements: React.FC = () => {
           <h1>{announcements.filter(announcement => announcement.departure_time === null).length}</h1>
         </Status>
         <Status>
-          <p>Carga total</p>
-          <h1>{} Kg</h1>
+          <p>Carga total ancorada</p>
+          <h1>{incoming.total} Kg</h1>
+        </Status>
+        <Status>
+          <p>Carga total partindo</p>
+          <h1>{outcoming.total} Kg</h1>
         </Status>
       </StatusContainer>
       <Table>

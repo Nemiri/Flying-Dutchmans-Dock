@@ -37,7 +37,7 @@ interface Request {
 const Ship: React.FC = () => {
   const params = useParams<Request>();
 
-  const [checked, setChecked] = useState(new Array<boolean>(3).fill(false));
+  const checked = new Array<boolean>(3).fill(false)
   const [isEnabled, setIsEnabled] = useState(false);
   const [ship, setShip] = useState<SingleShip>({} as SingleShip);
   const [cargo, setCargo] = useState<Cargo[]>([]);
@@ -59,15 +59,13 @@ const Ship: React.FC = () => {
     }
   };
 
-  const verifyChecked = (position: number) => {  
+  const verifyChecked = (position: number, checked: Array<boolean>) => {
+    checked[position] = !checked[position]
+    
     if (checked.includes(false))
       setIsEnabled(false)
     else
       setIsEnabled(true)
-
-    setChecked(checked.map((item, index) => {
-      return index === position ? !item : item
-    }))
   }
 
   const createCargo = () => {
@@ -189,17 +187,17 @@ const Ship: React.FC = () => {
             <div id="checklist-container">
               <div>
                 <label className="checklist">
-                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(0)}/>
+                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(0, checked)}/>
                   <p>Tem alguém armado?</p>
                 </label>
                 <hr />
                 <label className="checklist">
-                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(1)}/>
+                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(1, checked)}/>
                   <p>Algum tripulante tem TikTok instalado?</p>
                 </label>
                 <hr />
                 <label className="checklist">
-                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(2)}/>
+                  <input type="checkbox" className="checkbox" onChange={() => verifyChecked(2, checked)}/>
                   <p>Certeza que ninguém tá armado?</p>
                 </label>
               </div>

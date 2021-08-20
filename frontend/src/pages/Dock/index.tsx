@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "./styles";
 import { useHistory } from "react-router-dom";
-import DeleteIcon from '@material-ui/icons/Delete';
-import CreateIcon from '@material-ui/icons/Create';
-import Button from '@material-ui/core/Button';
 
 import api from "../../api/api";
 
@@ -70,23 +67,11 @@ const Docks: React.FC = () => {
                   <td>{dock.ships}</td>
                   <td>{dock.max_ships}</td>
                   <td>
-                      <div id="menu">
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        id = "update"
-                        startIcon={<CreateIcon />}
-                        onClick={()=>updateDock(dock.id)}
-                        > Update </Button>
-                        <Button
-                        variant="contained"
-                        color="secondary"
-                        id = "delete"
-                        startIcon={<DeleteIcon />}
-                        onClick={()=>deleteDock(dock.id)}
-                        > Delete </Button>
-                      </div>
-                    </td>
+                    <div id="menu">
+                      <button id="edit" onClick={()=>updateDock(dock.id)}>Editar</button>
+                      <button id="delete" onClick={()=>deleteDock(dock.id)}>Delete</button>
+                    </div>
+                  </td>
                 </tr>
               );
             })}
